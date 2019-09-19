@@ -40,9 +40,9 @@ print(message)
 
 #### 2.3 使用变量时避免命名错误
 
-程序存在错误时，解释器会提供一个traceback。traceback是一条记录，指出解释器运行代码时，在哪里遇到问题。
+##### 程序存在错误时，解释器会提供一个traceback。traceback是一条记录，指出解释器运行代码时，在哪里遇到问题。
 
-#### 练习
+##### 练习
 
 ```python
 feichou = "张文雅是废抽！"
@@ -76,4 +76,347 @@ upper（）会以全部大写显示变量中的值。
 
 lower（）会以全部小写显示变量中的值。
 
-建议：无法依靠用户来提供正确的大小写，因此需要将字符串先转换为小写，在存储它们。以后需要显示这些信息时，再将它转换为最合适的大小写方式。
+**建议**：无法依靠用户来提供正确的大小写，因此需要将字符串先转换为小写，在存储它们。以后需要显示这些信息时，再将它转换为最合适的大小写方式。
+
+##### 合并字符串
+
+python使用（+）来合并字符串
+
+```
+first_name = "ada"
+last_name = "loveace"
+full_name = first_name + " " + last_name
+print(full_name)
+```
+
+##### 制表符和换行操作
+
+```python3
+fater_name = "tom"
+mother_name = "kirs"
+baby_name = "jerry"
+print("Hello, My family members have\n\t" + fater_name.title() + ","
+      + mother_name.title() + "," + baby_name.title())
+```
+
+`\n为换行`
+
+`\t制表符`
+
+##### 删除空白
+
+```
+fater_name = "     tom"
+mother_name = "kirs "
+baby_name = " jerry "
+
+#删除左边空格
+print(fater_name.lstrip())
+#删除右边空格
+print(mother_name.rstrip())
+#删除前后空格
+print(baby_name.strip())
+
+```
+
+lstrip()：删除左边空格
+
+rstrip（）：删除右边空格
+
+strip（）：删除左右空格
+
+##### 练习
+
+```
+#2-3个性化消息
+name = "Eric"
+print("Hello " + name + ",would you like to learn some Python today?")
+
+
+#2-4调整名字大小写
+name = "zhang wen ya shi fei chou"
+print(name.title())
+
+#2-5名言
+name = "废抽"
+say = "东西我来洗"
+print(name + ":" + "\"" + say + "\"")
+
+#2-6名言2
+famous_person = "废抽"
+say = "帮我拿毛巾我就去洗澡"
+print(name + ":" + "\"" + say + "\"")
+
+#2-7剔除人名中的空白
+famous_person = " 废抽 "
+
+print(famous_person.lstrip())
+print(famous_person.rstrip())
+print(famous_person.strip())
+```
+
+#### 2.5数字
+
+##### 整数
+
+整数运算加减乘除，乘方运算。python支持运算次序，也可以使用括号改变运算次序。
+
+```
+2 + 3
+3 - 2
+2 * 3
+10 / 2
+2 ** 3
+（2 + 3）* 4
+```
+
+##### 浮点数
+
+带小数点的数字都称为浮点数。
+
+```
+0.2 + 0.1
+```
+
+##### str()函数避免错误
+
+```
+age = 23
+message = " Happy " + str(age) + "rd Birthday!"
+print(message)
+```
+
+因age为int整数类型，而赋值给message时候，包含""，python无法判断该值为int还是str，所以如果不加str将age改为字符串，python将会报错。
+
+##### 练习
+
+```
+#练习2-8
+#加减乘除，乘方；
+print(5 + 3)
+print(18 - 10)
+print(2 * 4)
+print(32 / 4)
+print(2 **3 )
+
+
+#练习2-9
+number = 4
+message = "我最喜欢的数字为" + str(number) + "啊！"
+print(message)
+
+```
+
+#### 2.6注释
+
+python中，注释用井号（#）标识。井号后面的内容都会被python解释器忽略。
+
+```
+#2-10添加注释练习
+#程序编程要养成习惯，有思路解决方法，就立刻在代码中填写注释；
+
+#创建一个浩哥
+haoge = "Jerry"
+#输出浩哥
+print(haoge)
+```
+
+#### Python之禅
+
+在python解释器里运行import this，将会输出python之禅。
+
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+------
+
+Python之禅 by Tim Peters
+
+优美胜于丑陋（Python 以编写优美的代码为目标）
+明了胜于晦涩（优美的代码应当是明了的，命名规范，风格相似）
+简洁胜于复杂（优美的代码应当是简洁的，不要有复杂的内部实现）
+复杂胜于凌乱（如果复杂不可避免，那代码间也不能有难懂的关系，要保持接口简洁）
+扁平胜于嵌套（优美的代码应当是扁平的，不能有太多的嵌套）
+间隔胜于紧凑（优美的代码有适当的间隔，不要奢望一行代码解决问题）
+可读性很重要（优美的代码是可读的）
+即便假借特例的实用性之名，也不可违背这些规则（这些规则至高无上）
+
+不要包容所有错误，除非你确定需要这样做（精准地捕获异常，不写 except:pass 风格的代码）
+
+当存在多种可能，不要尝试去猜测
+而是尽量找一种，最好是唯一一种明显的解决方案（如果不确定，就用穷举法）
+虽然这并不容易，因为你不是 Python 之父（这里的 Dutch 是指 Guido ）
+
+做也许好过不做，但不假思索就动手还不如不做（动手之前要细思量）
+
+如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
+
+命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
+
+#### 小结
+
+1. 如何使用变量；
+2. 如何创建描述性变量以及如何消除名称错误的语法错误；
+3. 字符串是什么；
+4. 如何使用小写、大写和首字母大写方式显示字符串；
+5. 使用空白来显示整洁的输出，以及如何剔除字符串多余的空白；
+6. 如何使用整数和浮点数；
+7. 如何编写说明性注释，让代码更容易理解；
+8. 了解了让代码尽可能简单的概念；
+
+### 3.1列表
+
+列表由一系列按特定顺序排列的元素组成。可以创建包含字母、数字的列表。元素之间可以没有任何关系。
+
+python中，用方括号（[]）来表示列表，并用逗号分隔其中的元素。
+
+```
+#3.1 列表用[]括号，如果直接使用print输出列表，或将[]也输出；
+family = ['爸爸','浩哥','妈妈']
+print(family)
+```
+
+#### 访问列表元素
+
+```
+#在列表增加索引，索引是从0开始，如果要访问的元素位置减一，就是当前元素的索引位置；
+print(family[0])
+#返回倒数最后一个元素；
+print(family[-1])
+```
+
+#### 使用列表中的各个值
+
+```
+message = "My first bicycle was a " + family[0].title() + "."
+print(message)
+```
+
+##### 练习
+
+```
+#3-1姓名：
+#创建一个列表
+names = ['tom','jerry','kirs']
+#输出列表第一个元素；
+print(names[0].title())
+#输出列表第二个元素；
+print(names[1].title())
+#输出列表第三个元素；
+print(names[2].title())
+
+
+#3-2问候语
+print("Hello," + names[0].title() + "!")
+print("Hello," + names[1].title() + "!")
+print("Hello," + names[2].title() + "!")
+
+
+#3-3自己的列表
+motorcycle = ['本田','丰田','奔驰']
+message = "I would like to own a " + motorcycle[0].title() + "motorcycle."
+print(message)
+```
+
+#### 修改、添加和删除元素
+
+创建的大多数列表都将是动态的，这意味着列表创建后，将随着程序的运行增删元素。
+
+##### 修改元素列表
+
+```
+#修改列表元素
+family = ['baba','haohao','chouchou']
+print(family)
+
+family[0] = 'tom'
+print(family)
+```
+
+##### 添加元素
+
+使用append（）函数，可以在列表末尾添加元素。一般会创建一个空列表，然后进行添加相关元素。
+
+```
+#append()会在列表末尾添加元素
+family.append('mama')
+print(family)
+```
+
+##### 列表中插入元素
+
+```
+#列表中插入元素,insert（）
+#在列表中第二个元素添加yeye这个元素；
+family.insert(1,'yeye')
+print(family)
+```
+
+##### 列表中删除元素
+
+```
+#列表中删除元素,使用del语句
+#删除列表中第二个元素；
+#del语句可以删除任何位置处的列表元素，但前提条件是知道索引位置；
+del family[1]
+```
+
+##### 使用pop（）删除元素
+
+```
+#使用pop()删除元素
+#pop()删除列表末尾的元素，并让你能够接着使用该元素。
+#列表就像一个栈，而删除列表末尾的元素相当于弹出栈顶元素。
+popend_family = family.pop()
+print(family)
+print(popend_family)
+```
+
+##### 弹出列表中任何位置处的元素
+
+```
+#弹出列表中任何位置处的元素
+first_popend = family[0]
+print(first_popend)
+```
+
+##### 根据值删除元素
+
+如果不知道需要删除元素的索引位置，只知道删除元素的值，可以使用remove()；remove从列表删除的元素，也可以像pop（）一样接着使用，一般用来提示列表元素删除原因；
+
+```
+#根据值删除元素,remove()
+family.remove('chouchou')
+print(family)
+
+
+#remove()删除值接着使用，一般用来提示删除信息
+del_family = 'tom'
+family.remove(del_family)
+print(family)
+print("这个元素" + del_family.title() + "已被删除！")
+```
+
+
+
+remove()只删除第一个指定的值，如果列表中该值重复多次，需要循环来判断是否删除所有这样的值。
+
