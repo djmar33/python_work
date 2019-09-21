@@ -1,4 +1,4 @@
-#修改列表元素
+﻿#修改列表元素
 family = ['baba','haohao','chouchou']
 print(family)
 
@@ -29,7 +29,7 @@ print(popend_family)
 
 
 #弹出列表中任何位置处的元素
-first_popend = family[0]
+first_popend = family.pop(0)
 print(first_popend)
 
 
