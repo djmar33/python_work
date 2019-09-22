@@ -489,3 +489,132 @@ del danner_names[0]
 print(danner_names)
 ```
 
+#### 3.3组织列表
+
+##### sort()排序
+
+对列表按字母顺序排序的，在也无法恢复原来的排列顺序，但是前提是都是英文小写才能实现。
+
+```
+#sort()排序
+cars = ['bmw','audi','toyota','subaru']
+cars.sort()
+print(cars)
+```
+
+sort()反向排序，只需要向sort()方法传递参数reverse=True。同样排序也是永久性的，无法恢复原来的排列顺序。
+
+```
+#sort()反向排序，传递参数reverse=True
+
+cars = ['bmw','audi','toyota','subaru']
+cars.sort(reverse=True)
+print(cars)
+
+```
+
+##### sorted()排序
+
+sorted()会保留列表元素原来的排列顺序，同时以特定顺序呈现它们。
+
+```
+#sorted()临时排序，并不影响原列表顺序；
+cars = ['bmw','audi','toyota','subaru']
+print("这是没排序前的列表：\n",cars)
+print("这是排序后的列表：\n",sorted(cars))
+```
+
+sorted()也可以反向排序，和sort()一样，传递reverse=True即可。
+
+```
+#sorted()临时反向排序，传递参数reverse=True
+cars = ['bmw','audi','toyota','subaru']
+print("这是没排序前的列表：\n",cars)
+print("这是排序后的列表：\n",sorted(cars,reverse=True))
+```
+
+##### reverse()排序
+
+reverse()可反转列表元素的排列顺序。和sort(reverse=True)区别在于，reverse()是反转列表元素排列，而不是按字母反向排序。方法reverse()也是永久性地修改列表排序，如果想恢复排列顺序，再执行多次reverse()排序即可。
+
+```
+#reverse()反向排序
+cars = ['bmw','audi','toyota','subaru']
+print("这是没排序前的列表：\n",cars)
+cars.reverse()
+print("这是使用reverse()排序后的列表\n",cars)
+```
+
+##### len()列表长度
+
+len()函数快速获悉列表的长度。计算列表元素是从1开始，这里不像索引需要从0开始，切记！
+
+```
+#len()列表长度
+cars = ['bmw','audi','toyota','subaru']
+print("列表长度为：",len(cars))
+```
+
+##### 练习
+
+```
+#3-8放眼看世界
+
+world = ['japan','laos','hongkong','thailand','malaysia']
+print("这是我想去的5个国家：\n",world)
+
+#使用sorted()按字母排序
+print("使用sorted()函数按字母排序：\n",sorted(world))
+print("使用sorted()函数只会临时排序，不影响原始列表元素：\n",world)
+
+#使用sorted()反向排序
+print("使用sorted()反向排序：\n",sorted(world,reverse=True))
+print("同样也不会影响原来列表顺序：\n",world)
+
+#使用reverse()反向排序
+world.reverse()
+print("使用reverse()反向排序：\n",world)
+
+#再次使用reverse()反向排序，将恢复默认列表顺序
+world.reverse()
+print("再次使用reverse()，恢复默认顺序：\n",world)
+
+#使用sort()排序
+world.sort()
+print("使用sort()函数排序：\n",world)
+
+#使用sort()反向排序
+world.sort(reverse=True)
+print("使用sort()反向函数排序：\n",world)
+
+#3-9晚餐使用len()长度函数
+danner_names = ['废抽','浩哥','爸爸']
+print("总共" + str(len(danner_names)) + "人吃晚餐")
+
+#3-10练习本章函数排序
+english = ['z','s','e','x','b','o']
+print("默认排序：\n",english)
+
+#sortend()
+print("sorted()：\n",sorted(english))
+
+#sorted()反向
+print("sorted()：\n",sorted(english,reverse=True))
+
+#reverse()
+english.reverse()
+print("revers()：\n",english)
+
+#reverse()恢复
+english.reverse()
+print("再次revers(),恢复顺序：\n",english)
+
+#sort()
+english.sort()
+print("sort()：\n",english)
+
+#sort()反向
+english.sort(reverse=True)
+print("sort()反向：\n",english)
+```
+
