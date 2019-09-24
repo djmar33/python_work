@@ -633,5 +633,26 @@ print("sort()反向：\n",english)
 5. 如何对列表临时排序？sorted()
 6. 如何确定列表长度？len()
 
+#### 4操作列表
 
+##### for语句
+
+可以遍历列表的所有元素，对每个元素执行相同的操作。
+
+```
+#4-1披萨
+pizzas = ['奥尔良','牛肉','榴莲']
+for pizza in pizzas:
+    print("我喜欢吃的" + pizza + "披萨.\n")
+
+print("我就是喜欢吃pizza!")
+
+
+#4-2动物
+aniamls = ['dog','cat','cow']
+for aniaml in aniamls:
+    print("A " + aniaml.title() + " would make a great pet.")
+print("Any of these animals would make a great pet!")
+
+```
 
