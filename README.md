@@ -639,6 +639,12 @@ print("sort()反向：\n",english)
 
 可以遍历列表的所有元素，对每个元素执行相同的操作。
 
+for语句注意事项：
+
+1. for语句后面有冒号结尾；
+2. for语句里代码需要缩进，一般是4个空格；
+3. 不在循环范围内的代码不需要缩进；
+
 ```
 #4-1披萨
 pizzas = ['奥尔良','牛肉','榴莲']
@@ -654,5 +660,135 @@ for aniaml in aniamls:
     print("A " + aniaml.title() + " would make a great pet.")
 print("Any of these animals would make a great pet!")
 
+```
+
+##### range()函数
+
+range（）能够轻松地生成一系列的数字。
+
+```
+#4.3.1 range()函数使用
+
+#打印一系列数字，range函数里1,5，表示生成1-4范围的数字，并不会打印数字5；
+for value in range(1,5):
+    print(value)
+```
+
+###### 创建数字列表
+
+使用list（）将range（）的结果直接转为列表。
+
+```
+#4.3.2 创建数字列表
+number = list(range(1,5))
+print(number)
+```
+
+###### 指定步长
+
+range（2,11,2），range（）函数从2开始，然后不断增加2，直到达到或超过最终值11。后面数字2是递增数。
+
+```
+#指定步长,生成10以下的偶数列表
+number = list(range(2,11,2))
+print(number)
+```
+
+使用range计算1~10平方数
+
+```
+#创建1~10的平方
+#创建一个空列表，便于等下存储平方数结果；
+squares = []
+#使用for循环，遍历1-11（就是1-10）
+for value in range(1,11):
+    #求value的平方值，并且赋值给square
+    square = value ** 2
+    #将每个计算平方的值square，添加到squares列表中
+    squares.append(square)
+#输出列表
+print(squares)
+```
+
+更简洁方法计算1~10平方数
+
+```
+squares = []
+for value in range(1,11):
+    squares.append(value ** 2)
+print(squares)
+```
+
+##### 列表统计计算
+
+```
+#4.3.3列表统计
+
+digits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+#列表中最小的数
+print(min(digits))
+#列表中最大的数
+print(max(digits))
+#列表中所有数之和
+print(sum(digits))
+#列表长度
+print(len(digits))
+```
+
+##### 列表解析  
+
+```
+#4.3.4列表解析
+
+squares = [value ** 2 for value in range(1,11)]
+print(squares)
+```
+
+讲解顺序：
+
+1. 指定一个描述性的列表名，squares；
+2. 定义一个表达式，value ** 2；
+3. 编写一个for循环，用于给表达式提供值；
+4. for value in range(1,11)，它将1~10的值提供给表达式value**2；
+5. 这里的for循环是没有冒号的；
+6. 可以节约三四行代码来生成列表；
+
+##### 练习
+
+```
+#4-3数到20
+for value in range(1,21):
+    print(value)
+
+#4-4一百万，数太大了，无法运行改成100；
+number = list(range(1,101))
+print(number)
+#4-5计算1~100最大的数，最小的数，1~100求和
+number = list(range(1,101))
+print(max(number))
+print(min(number))
+print(sum(number))
+
+#4-6奇数
+odd_number = []
+for value in range(1,21,2):
+    odd_number.append(value)
+print(odd_number)
+
+#4-7 3的倍数
+number = []
+for value in range(3,31,3):
+    number.append(value)
+print(number)
+
+#4-8 立方
+squares = []
+for value in range(1,11):
+    squares.append(value ** 3)
+print(squares)
+
+#4-9 立方解析
+squares = [ value ** 3 for value in range(1,11)]
+print(squares)
 ```
 
