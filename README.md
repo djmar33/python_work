@@ -792,3 +792,97 @@ squares = [ value ** 3 for value in range(1,11)]
 print(squares)
 ```
 
+##### 切片
+
+处理列表部分元素或所有元素，python称为切片。
+
+```
+#4.4.1切片使用
+
+players = ['charles','martina','michael','florence','eli']
+#players[0:3]，表示从索引0开始，分别输出0,1,2三个元素。
+#若要使用最后一个元素，索引需要加1；与range()一样。但是切片索引还是从0开始；
+print(players[0:3])
+
+#索引从头开始,可以不需要指定第一个索引
+print(players[:3])
+
+#索引直到最后，可以不需要指定最后一个索引
+print(players[2:])
+
+#导出列表倒数第三个元素，无论列表怎么变化，都只会导出倒数第三个数；
+print(players[-3:])
+```
+
+###### 遍历切片
+
+```
+#4.4.2遍历切片
+#使用遍历，输出列表前三名球员；
+players = ['charles','martina','michael','florence','eli']
+print("Here are the fist three players on my team:")
+for player in players[0:4]:
+    print(player.title())
+
+```
+
+###### 复制列表
+
+```
+#4.4.3复制列表
+my_foods = ['叉烧','烧鸭','排骨','鸡翅']
+#使用切片，将列表复制给firend_foods
+firend_foods = my_foods[:]
+print("这是我喜欢的食物：\n",my_foods)
+print("这是我朋友喜欢的食物：\n",firend_foods)
+
+
+#与变量赋值不一样
+#我们修改一下两个列表，然后输出相关的值，发现他们互不影响
+my_foods.append('汉堡')
+firend_foods.append('榴莲')
+print("这是我喜欢的食物：\n",my_foods)
+print("这是我朋友喜欢的食物：\n",firend_foods)
+
+
+#若使用变量赋值
+firend_foods = my_foods
+my_foods.append('西瓜')
+firend_foods.append('苹果')
+#发现输出的值都会一样。
+print("这是我喜欢的食物：\n",my_foods)
+print("这是我朋友喜欢的食物：\n",firend_foods)
+```
+
+##### 练习
+
+```
+#练习2
+#4-10切片
+my_foods = ['叉烧','烧鸭','排骨','鸡翅']
+print("The first three items in the list are:\n")
+print(my_foods[0:3])
+
+print("Three items from the middle of the list are:\n")
+print(my_foods[1:3])
+
+print("The last three items in the list are:\n")
+print(my_foods[-3:])
+
+
+#4-11你的比萨和我的比萨
+my_pizzas = ['榴莲','奥尔良','海鲜','牛肉','香菇']
+firend_pizzas = my_pizzas[:]
+my_pizzas.append('青菜')
+firend_pizzas.append('木耳')
+print("我喜欢的pizza:\n",my_pizzas)
+print("我朋友喜欢的pizza:\n",firend_pizzas)
+
+#4-12使用两个for导出pizza
+for my_pizza in my_pizzas[:]:
+    print("我喜欢的pizza有",my_pizza)
+for firend_pizza in firend_pizzas[:]:
+    print("我朋友喜欢的pizza有",firend_pizza)
+
+```
+
