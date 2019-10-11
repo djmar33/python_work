@@ -960,3 +960,250 @@ print(foods)
 5. 如何通过切片使用列表和复制列表；
 6. 元组操作和使用；
 7. 代码格式指南；
+
+#### 5 if语句
+
+if语句让你能够检查程序当前状态，并据此采取相应措施。
+
+###### 简单示例
+
+```
+#5.1 if语句实例，判断列表中bmw如果是小写，就执行首字母大写输出；
+
+cars = ['audi','bmw','subaru','toyota']
+
+for car in cars:
+	if car == 'bmw':
+		print(car.upper())
+	else:
+		print(car.title())
+```
+
+if语句核心都是一个值True或False。如果条件为True时，将输出if语句里的代码，否则忽略if里的代码。
+
+##### 检查符号
+
+1. 比较两个值是否相同；==
+2. 比较两个值是否不相同；！=
+3. 检查多个条件，但是两个都必须满足才为True；and
+4. 检查多个条件，但是其中一个条件满足就为True；or
+5. 检查元素是否包含在列表里；in   例： `'bmw' in cars `
+6. 检查元素是否不包含在列表里； not in 例：`'plane' not in cars`
+
+##### 布尔表达式
+
+条件测试的别名，与条件表达式一样，结果要么是True或False。
+
+##### 练习
+
+```
+#5-2更多条件测试
+#检查两个字符串相等和不等
+#False
+print("feichou" == "feichou2")
+#True
+print("feichou" == "feichou")
+
+#lower测试
+a = "FEICHOU"
+print(a.lower() == "feichou")
+
+#and，只要一个为False就是False
+
+print("结果：",True and False )
+print("结果：",True and True ,"\n")
+
+#or,只要一个为True就是True
+print("结果：",True or False )
+print("结果：",False or False,"\n")
+
+#in语句判断
+mama = "废抽"
+print("废在妈妈名字里:\n",'废' in mama)
+
+#not in 语句判断
+mama = "废抽"
+print("废在妈妈名字里:\n",'废' not in mama)
+```
+
+##### if-else语句
+
+判断条件测试通过执行一个操作，若没有通过，将执行另外一个操作。
+
+###### 简单示例
+
+```
+#5.3.2 if-else语句
+age = 17
+if age >= 18:
+	print("你年龄满足投票。")
+	print("你登记投票了吗？")
+else:
+	print("你年龄未满足投票资格啊，小弟弟！")
+
+```
+
+##### if-elif-else语句
+
+依次检查每个条件，否则将执行else操作。
+
+###### 简单示例
+
+```
+#5.3.3 if-elif-else语句
+age = 12
+
+if age < 4:
+	price = 0
+elif age < 18:
+	price = 5
+else:
+	price = 10
+print("Your admission cost is $" + str(price) + "元.")
+```
+
+##### 多个elif语句
+
+###### 简单示例
+
+```
+#5.3.4 多个elif语句
+age = 70
+
+if age < 4:
+	price = 0
+elif age < 18:
+	price = 5
+elif age < 64:
+	price = 10
+else:
+	price = 0
+print("Your admission cost is $" + str(price) + "元.")
+```
+
+##### 省略else
+
+python并不要求if-elif语句里一定要包含else，有时候去掉else，判断语句将会更清晰。
+
+###### 简单示例
+
+```
+#5.3.5 省略else语句
+age = 64
+
+if age < 4:
+	price = 0
+elif age < 18:
+	price = 5
+elif age < 64:
+	price = 10
+elif age >= 64:
+	price = 0
+print("Your admission cost is $" + str(price) + "元.")
+```
+
+##### 测试多个条件
+
+一般if-elif语句，都只能满足一个条件，然后执行对应的代码。但是如果需要判断每一个元素的时候，就需要使用多个if语句结构来判断。
+
+##### 练习
+
+```
+#练习
+#5-3外星人颜色
+alien_color = 'green'
+if alien_color == 'green':
+	print("获得5个点。")
+
+alien_color = 'yellow'
+if alien_color == 'green':
+	print("获得5个点。")
+
+alien_color = 'red'
+if alien_color == 'green':
+	print("获得5个点。")
+
+#5-4外星人颜色2
+alien_color = 'green'
+if alien_color == 'green':
+	print("获得5个点。")
+else:
+	print("获得10个点。")
+
+#5-5外星人颜色3
+alien_color = input("""
+	input Color green,red,yellow\n>""")
+if alien_color.lower() == 'green':
+	print("获得5个点。")
+elif alien_color.lower() == 'yellow':
+	print("获得10个点。")
+else:
+	print("获得15个点。")
+
+#5-6人生的不同阶段
+age = input("请输入你的年龄：\n")
+if int(age) < 2:
+	print("你是个小BB哦！")
+elif int(age) < 4:
+	print("你正在蹒跚学步！")
+elif int(age) < 13:
+	print("你是一位儿童哦！")
+elif int(age) < 20:
+	print("你是一位青年！")
+elif int(age) < 65:
+	print("你是一位成年人！")
+else:
+	print("你是一位老人！")
+
+#5-7喜欢的水果
+favorite_fruits = ['香蕉','榴莲','西瓜']
+if '香蕉' in favorite_fruits:
+	print("你喜欢香蕉")
+
+if '榴莲' in favorite_fruits:
+	print("你喜欢榴莲")
+
+if '苹果' in favorite_fruits:
+	print("你喜欢苹果")
+```
+
+##### 使用if语句处理列表
+
+###### 简单示例
+
+```
+#5.4.1
+#创建一个列表，列表里包含相关配菜；
+requested_toppings = ['mushrooms','green peppers','extra cheese']
+
+#使用for循环，遍历这个列表每个元素；
+for requested_topping in requested_toppings:
+	#判断这个元素是否green peppers，如果是则输出以下句子；
+	if requested_topping == 'green peppers':
+		print("Soryy, we are out of green peppers right now.")
+	#如果元素不等于green peppers就输出以下句子；
+	else:
+		print("Adding " + requested_topping + ".")
+#循环外增加一个提示语，说明pizza已经完成。
+print("\nFinished making your pizza!")
+```
+
+##### 确定列表不是空
+
+###### 简单示例
+
+```
+#5.4.2确定列表不是空
+
+#创建一个空列表
+requested_toppings = []
+
+#判断列表是否为空，如果列表有值，返回将会是True。
+if requested_toppings :
+	for requested_topping in requested_toppings:
+		print("Adding " + requested_topping + ".")
+#否则将输出提示语；
+else:
+	print("Are you sure you want a plain pizza?")
+```
+
