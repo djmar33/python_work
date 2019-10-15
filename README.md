@@ -1356,3 +1356,55 @@ print(alien_0['color'])
 ##### 添加键——值对
 
 字典是一种动态结构，可随时添加键——值对。
+
+```
+
+#创建一个字典
+alien_0 = {'coloer': 'green', 'points': 5}
+print(alien_0)
+#添加新的键--值对；
+alien_0['x_position'] = 0
+alien_0['y_position'] = 25
+print(alien_0)
+```
+
+##### 创建空字典
+
+```
+#创建一个空字典
+alien_0 = {}
+```
+
+##### 修改字典键的值
+
+```
+#字典原本color键的值为green。
+alien_0 = {'color': 'green'}
+print("The alien is " + alien_0['color'] + ".")
+#将字典color键的值更改为黄色
+alien_0['color'] = 'yellow'
+print("The alien is now " + alien_0['color'] + ".")
+```
+
+修改字典某个值，而改变外星人的行为
+
+```
+#创建一个外星人字典，包含该外星人属性；
+alien_0 = {'x_position': 0, 'y_position': 25, 'speed': 'medium'}
+#输出外星人x_position值；
+print("Original x-position: " + str(alien_0['x_position']))
+
+#判断外星人speed值，然后执行对应代码；
+if alien_0['speed'] == 'slow':
+    x_increment = 1
+elif alien_0['speed'] == 'medium':
+    x_increment = 2
+else:
+    x_increment = 3
+
+#最终外星人的x_position 为x_increment值加x_position值；
+alien_0['x_position'] = alien_0['x_position'] + x_increment
+print("New x-position: " + str(alien_0['x_position']))
+
+```
+
