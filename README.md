@@ -1408,3 +1408,159 @@ print("New x-position: " + str(alien_0['x_position']))
 
 ```
 
+##### 删除键--值对
+
+```
+#删除键--值对
+alien_0 = {'color': 'green', 'points': 5}
+print(alien_0)
+
+#删除color这个键
+del alien_0['color']
+print(alien_0)
+```
+
+##### 字典书写建议
+
+```
+#favorite_languages，该小结告诉字典书写技巧；
+
+#包含多个键--值对时，建议使用语法书写；
+#1、输入左花括号回车，然后下一行缩进四个空格’
+#2、指定键--值对，并在后面加上一个逗号,回车自动缩进后续的键--值对；
+#3、建议在最后一个键--值对也加上逗号，为后续增加键--值对做好准备；
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+print("Sarah's favorite language is " +
+      favorite_languages['sarah'].title() +
+      ".")
+
+```
+
+##### 练习
+
+```
+#练习
+#6-1创建一个熟人信息
+
+feichou = {
+    'last_name': '抽',
+    'first_name': '废',
+    'age': '25',
+    'city': 'shenzhen',
+    }
+
+print("张文雅简称： " +
+      feichou['first_name'] +
+      feichou['last_name'] +
+      "，今年她" +
+      feichou['age'] +
+      "岁，她居住在" +
+      feichou['city'] +
+      ".")
+
+#6-2喜欢的数字
+
+numbers = {
+    'simin': '8',
+    'sihua': '7',
+    'shuyi': '5',
+    'weijie': '4',
+    }
+
+print("思敏喜欢的数字：" + numbers['simin'])
+print("思华喜欢的数字：" + numbers['sihua'])
+print("淑仪喜欢的数字：" + numbers['shuyi'])
+print("伟杰喜欢的数字：" + numbers['weijie'])
+
+
+#6-3已学python词汇表
+
+vocabulary = {
+    'list': '列表',
+    'tupe': '元组',
+    'dict': '字典',
+    'variable': '变量',
+    'if': '判断',
+    }
+
+print("list：\n" + vocabulary['list'])
+print("tupe：\n" + vocabulary['tupe'])
+print("dict：\n" + vocabulary['dict'])
+print("variable：\n" + vocabulary['variable'])
+print("if：\n" + vocabulary['if'])
+
+```
+
+##### 遍历字典
+
+```
+#6.3.1遍历所有键--值对
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+#使用for循环遍历字典所有键--值对；
+#key,value两个变量可以自定义；
+for key, value in favorite_languages.items():
+    print("\nKey: " + key)
+    print("Value: " + value)
+
+```
+
+遍历字典顺序python毫不关心，只关心键--值对应关系。
+
+
+
+##### 遍历字典所有键
+
+```
+#6.3.2遍历所有键
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+#使用for循环遍历字典所有键；
+#使用变量name遍历键，这样更直观需要提取相关的信息；
+#如果不加favorite_languages.key()效果和favorite_languages：一样，不过增加key()更直观；
+for name in favorite_languages.keys():
+    print(name.title())
+
+```
+
+遍历字典，在指定名字时输出喜欢的语言
+
+```
+#6.3.2-1遍历包含指定的键
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+#创建一个指定名称的列表；
+
+friend = ['jen', 'sarah']
+for name in favorite_languages.keys():
+    print(name.title())
+    #判断键如果在列表里，将输出喜欢的语言；
+    if name in friend:
+        print(" Hi " + name.title() +
+              ",I see your favorite language is " +
+              favorite_languages[name].title())
+        
+
+```
+
