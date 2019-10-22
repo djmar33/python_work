@@ -1564,3 +1564,198 @@ for name in favorite_languages.keys():
 
 ```
 
+还可以使用key()确定某个人是否接受了调查。
+
+```
+#6.3.2-2使用key()确定某个人是否被调查。
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+#判断erin是否在favorite_languages字典里，如果不在将输出提示语,请参加投票。
+if 'erin' not in favorite_languages.keys():
+    print("Erin, please take our poll!")
+
+```
+
+##### 按顺序遍历字典中的键
+
+字典总是明确的记录键和值之间的关联关系，但获取字典元素时，获取顺序是不可预测的。这不是问题，只要键和值相对应即可。如果需要特定顺序返回元素，需要使用sorted()进行特定排序。
+
+```
+#6.3.3 使用sorted()排序dirt键的顺序.
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+#使用sorted()将键排序，然后在遍历。
+for name in sorted(favorite_languages.keys()):
+    print(name.title() + ", thank you for taking the poll.")
+
+```
+
+##### 遍历字典中所有的值
+
+如果需要提取字典的值，需要使用values()，它将返回一个值的列表，而不包含任何键。
+
+```
+#6.3.4遍历字典所有的值。使用values()
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+print("The following languages have been mentioned:")
+#遍历字典所有的值，并赋值给language该变量。
+for language in favorite_languages.values():
+    print(language.title())
+
+
+```
+
+检查值中是否重复，可以使用set()集合，剔除重复项。
+
+```
+#6.3.4-1使用set()集合，剔除重复值
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+print("The following languages have been mentioned:")
+#使用set剔除字典值重复项。
+for language in set(favorite_languages.values()):
+    print(language.title())
+
+```
+
+##### 练习
+
+```
+#6-4使用6-3代码，分别输出键或值。
+vocabularys = {
+    'list': '列表',
+    'tupe': '元组',
+    'dict': '字典',
+    'variable': '变量',
+    'if': '判断',
+    'set': '集合',
+    'sorted': '排序',
+    'title': '首字母大写',
+    'items': '遍历key,value',
+    'keys': '遍历key',
+    'value': '遍历value'
+    }
+
+for key, value in vocabularys.items():
+    print(key.title() + ":" + value)
+
+
+#6-5河流
+
+#创建一个字典，包括河流及经过国家
+
+three_rivers = {
+    'nile': 'egypt',
+    'amazon': 'brazil',
+    'changjiang': 'china',
+    }
+
+#遍历字典
+for river, state in three_rivers.items():
+    print("The " + river + " runs through " + state + ".")
+
+#遍历所有键
+for river in three_rivers.keys():
+    print("The three major rivers in the world are " + river)
+    
+#遍历所有值
+for state in three_rivers.values():
+    print("The countries where the three major rivers pass " + state)
+
+
+#6-6调查，判断列表是否在名单里，如果在输出相关提示语。
+
+#创建一个字典。
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+#创建一个调查名单，判断是否在字典里
+friends = ['jen','kris','sarah','jerry','tom']
+
+#先遍历调查名单
+for friend in friends:
+    #判断调查名单是否在字典里，如果是将执行代码，否则输出提示语。
+    if friend in favorite_languages.keys():
+        print(friend.title() + " ,感谢你参与投票，你喜欢的语言是 " +
+              favorite_languages[friend])
+    else:
+        print(friend.title() + "你没有参与本次投票，欢迎参与，谢谢！")
+
+```
+
+##### 嵌套
+
+有时需要将一系列字典存储在列表中，或将列表作为存储在字典中，这称为嵌套。
+
+可以在列表中去嵌套字典、在字典中嵌套列表甚至在字典中嵌套字典。
+
+###### 字典列表
+
+如果管理成群结队的外星人呢？一种办法是创建一个外星人列表，其中每个外星人都是一个字典，包含有关的外星人的各种信息。
+
+```
+#6.4.1字典列表
+
+#创建3个包含不同信息的外星人字典；
+alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+#列表嵌入字典；
+aliens = [alien_0, alien_1, alien_2]
+
+#遍历列表所有的字典；
+for alien in aliens:
+    print(alien)
+
+```
+
+一般情况外星人不止三个，而且每个外星人的代码都是自动生成的，可以使用range（）生成30个外星人：
+
+```
+#6.4.1-2 range()自动生成30个外星人信息
+
+#创建一个空列表，将存储30个外星人字典信息；
+aliens = []
+
+#使用range()，产生30个外星人信息，并且添加到aliens列表里。
+for alien_number in range(30):
+    new_alien = {'color': 'green', 'poions': 5, 'speed': 'slow'}
+    aliens.append(new_alien)
+
+#使用切片，显示列表前五位外星人信息；
+for alien in aliens[:5]:
+    print(alien)
+print("...")
+
+#显示列表长度
+print("Total number of aliens: \n" + str(len(aliens)))
+
+```
+
