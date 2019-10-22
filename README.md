@@ -1759,3 +1759,269 @@ print("Total number of aliens: \n" + str(len(aliens)))
 
 ```
 
+
+
+###### 字典中存储列表
+
+如果使用列表，只能存储添加的比萨配料，而如果使用字典，就不仅可以包含配料列表，还可以包含其他比萨的描述。
+
+```
+#6.4.2在字典中存储列表
+
+#存储所点的比萨信息
+pizza = {
+    'crust': 'thick',
+    'toppings': ['mushrooms', 'extra cheese'],
+    }
+
+#概述所点的比萨
+
+print("You ordered a " + pizza['crust'] + "-crust pizza " +
+      "with the following toppings:")
+
+#pizza字典里配料toppings包含配料列表，而不是单个值；
+for topping in pizza['toppings']:
+    print("\t" + topping)
+
+```
+
+
+
+字典包含列表的好处，一个键可以对应多个值，这些值都包含在这个列表里。
+
+```
+
+#6.4.2-1 字典嵌套列表
+#遍历字典的for 循环中，需要再使用一个for循环来遍历相对应的列表；
+
+favorite_languages = {
+    'jen': ['python', 'ruby'],
+    'sarah': ['c'],
+    'edward': ['ruby', 'go'],
+    'phil': ['python', 'haskell']
+    }
+#for循环，先遍历字典元素；
+#再使用for循环，编列字典值里列表的元素；
+for name, languages in favorite_languages.items():
+    print("\n" + name.title() + "'s favorite languages are:")
+    for language in languages:
+        print("\t" + language.title())
+
+```
+
+
+
+加入if语句，判断如果只有一种喜欢的语言，将提示其他语句。
+
+```
+
+#6.4.2-2 增加if语句，判断喜欢语言是否只有一个
+
+favorite_languages = {
+    'jen': ['python', 'ruby'],
+    'sarah': ['c'],
+    'edward': ['ruby', 'go'],
+    'phil': ['python', 'haskell']
+    }
+
+for name, languages in favorite_languages.items():
+    #判断喜欢语言是否只有一个，如果不是将输出以下代码；
+    if len(languages) > 1:
+        print("\n" + name.title() + "'s favorite languages are:")
+        for language in languages:
+            print("\t" + language.title())
+    else:
+        for language in languages:
+            print("\n" + name.title() + "'s favorite languages is:" +
+                  language)
+
+```
+
+同样问题，else没有使用for遍历列表，而是直接用索引访问列表元素。
+
+```
+
+#6.4.2-2 增加if语句，判断喜欢语言是否只有一个
+
+favorite_languages = {
+    'jen': ['python', 'ruby'],
+    'sarah': ['c'],
+    'edward': ['ruby', 'go'],
+    'phil': ['python', 'haskell']
+    }
+
+for name, languages in favorite_languages.items():
+    #判断喜欢语言是否只有一个，如果不是将输出以下代码；
+    if len(languages) > 1:
+        print("\n" + name.title() + "'s favorite languages are:")
+        for language in languages:
+            print("\t" + language.title())
+    else:
+        language = languages[0]
+        print("\n" + name.title() + "'s favorite languages is:" +
+                  language.title())
+
+```
+
+
+
+###### 字典中存储字典
+
+字典中嵌套字典，代码可能会变复杂很多。但是遍历字典键时，将返回对应信息的字典。
+
+```
+#6.4.3字典嵌套字典
+
+#字典嵌套字典；
+#键为用户名，值为字典。字典里包含用户名相关信息；
+user = {
+    'aeinstein': {
+        'first': 'albert',
+        'last': 'einstein',
+        'location': 'princeton',
+        },
+
+    'mcurie': {
+        'first': 'marie',
+        'last': 'curie',
+        'location': 'paris',
+        },
+    }
+#遍历字典；
+for username, user_info in user.items():
+    print("\nUsername: " + username)
+    #合并字典值，并赋值给full_name变量；
+    full_name = user_info['first'] + " "  + user_info['last']
+    location = user_info['location']
+
+    print("\tFull name: " + full_name.title())
+    print("\tLocation: " + location.title())
+
+```
+
+##### 练习
+
+```
+#练习
+#6-7 创建3个表示人的字典
+
+feichou = {
+    'position': 'lowly',
+    'nature': 'not good',
+    'sex': 'girl',
+    }
+
+haohao = {
+    'position': 'rank',
+    'nature': 'good',
+    'sex': 'boy',
+    }
+
+weijie = {
+    'position': 'medium',
+    'nature': 'medium',
+    'sex': 'boy',
+    }
+
+peoples = [feichou, haohao, weijie]
+
+for people in peoples:
+    print(people)
+
+
+#6-8 列表嵌套字典
+
+cat_green = {
+    '主人': 'liangweijie',
+    '类型': '斗牛犬',
+    }
+
+cat_yellow ={
+    '主人': '自己',
+    '类型': '汪汪',
+    }
+
+cat_balk ={
+    '主人': '自己',
+    '类型': '人类',
+    }
+
+pets = [cat_green, cat_yellow, cat_balk]
+
+for pet in pets:
+    print(pet)
+
+
+
+#6-9 字典嵌套列表
+
+favorite_places = {
+    'tom': ['北京', '泰国', '日本'],
+    'jerry': ['广州', '深圳', '龙岗'],
+    'kirs': ['新加坡', '海南', '巴黎'],
+    }
+
+
+for name, places in favorite_places.items():
+    print(name.title() + "喜欢去的地方有：")
+    for place in places:
+        print("\t" + place)
+
+
+#6-10 字典嵌套列表
+
+favorite_numbers = {
+    'tom': [1, 2, 3],
+    'jerry': [4, 5, 6],
+    'kirs': [7, 8, 9],
+    }
+
+
+for name, numbers in favorite_numbers.items():
+    print(name.title() + "喜欢去的数字有：")
+    for number in numbers:
+        print("\t" + str(number))
+
+
+#6-10 字典嵌套字典
+
+cities = {
+	'深圳': {
+	'国家': '中国',
+	'人口': '13亿',
+	'事实': '强大',
+	},
+	'曼谷': {
+	'国家': '泰国',
+	'人口': '6900万',
+	'事实': '强大',
+	},
+	'河内': {
+	'国家': '越南',
+	'人口': '9554万',
+	'事实': '强大',
+        },
+    }
+
+for city, citie_info in cities.items():
+    print("城市：" + city)
+    country = citie_info['国家']
+    poputation = citie_info['人口']
+    fact = citie_info['事实']
+
+    print("它属于 " + country + "，国家人口 " + poputation + ",国家事实 " + fact)
+
+```
+
+##### 小结
+
+1. 如何定义字典；
+2. 如何存储信息在字典里；
+3. 如何访问修改字典元素；
+4. 遍历字典元素；
+5. 遍历字典键-值对；
+6. 遍历字典所有键；
+7. 遍历字典所有值；
+8. 如何列表中嵌套字典；
+9. 如何字典中嵌套列表；
+10. 如何字典中嵌套字典；
