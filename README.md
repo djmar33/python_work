@@ -2025,3 +2025,118 @@ for city, citie_info in cities.items():
 8. 如何列表中嵌套字典；
 9. 如何字典中嵌套列表；
 10. 如何字典中嵌套字典；
+
+
+
+#### 7 input输入
+
+input()函数可以让用户输入需要的信息。
+
+工作原理：函数input（）让程序暂停运行，等待用户输入一些文本。获取用户输入后，python将其存储一个变量，方便调用。
+
+```
+#7.1函数input()的工作原理
+
+message = input("告诉一些东西，然后我会重复告诉你：")
+print(message)
+
+```
+
+##### 编写清晰的程序
+
+每当使用input（）时，都应制定清晰而易于明白的提示，准确的指出你希望用户提供什么信息。
+
+```
+#一般使用input()，需要准确的指出希望用户提供什么信息；
+
+name = input("请输入你的名字：")
+print("您好," + name + "!")
+
+#如果提示语超过一行，可以将提示语赋值给一个变量，这样input()会较为清晰；
+
+prompt = "如果你告诉我你是谁，我们可以对你的信息个性化设置。"
+prompt += "\n你的姓名是什么？"
+
+name = input(prompt)
+print("您好," + name + "!")
+
+```
+
+
+
+##### 使用int()来获取数值输入
+
+使用int()时，用户输入信息python将解读为字符串，如果用作输入将不会发生问题，但是如果进行数值判断，就会报错。就必须使用int()函数转换为数值。
+
+```
+#7.1.2使用int()获取数值输入
+
+height = input("你的身高多少？")
+
+#将字符串转换为数值；
+height = int(height)
+
+
+#将用户提供信息进行判断；
+if height >= 36:
+    print("你身高适合玩过山车呀！")
+else:
+    print("你身高还不适合玩过山车哦~")
+
+```
+
+##### 求模运算符（%）
+
+两个数相处返回余数。可以使用求模运算符判断奇数还是偶数。
+
+```
+#7.1.3 求模运算符  %
+
+number = input("请输入一位数字：")
+number = int(number)
+
+if number % 2 == 0:
+    print("这是偶数！")
+else:
+    print("这是奇数！")
+
+```
+
+
+
+##### python2.7获取输入
+
+python2.7使用raw_input()函数，而不是使用input()。
+
+
+
+##### 练习
+
+```
+#7-1汽车租赁
+
+rent = input("What car would you like to rent?")
+print("Let me see if I can find you a " + rent + "。")
+
+#7-2餐馆定位
+
+danner = input("How many people have dinner?")
+danner = int(danner)
+
+if danner >= 8:
+    print("Sorry, Not enough Seat.You have " + str(danner) + " people.")
+else:
+    print("Have a good dinner.")
+
+#7-3 10的倍数
+
+number = input("请输入一位数，将判断是否10的倍数:")
+number = int(number)
+
+if number % 10 == 0:
+    print(str(number) + "是10的倍数。")
+else:
+    print(str(number) + "不是10的倍数。")
+
+```
+
