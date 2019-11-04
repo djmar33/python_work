@@ -2140,3 +2140,138 @@ else:
 
 ```
 
+
+
+##### while 循环
+
+for循环用于针对集合中的每个元素的一个代码块，而while循环不断的运行，直到指定条件不满足位置；
+
+###### 使用while循环
+
+```
+#7.2.1使用while循环
+
+
+current_number = 1
+#只要cuen_number满足<=5，就会一直运行此循环；
+while current_number <= 5:
+    print(current_number)
+    #每次叠加1；
+    current_number += 1
+
+```
+
+###### 判断退出
+
+```
+#7.2.2让用户选择退出
+
+#提示语
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program."
+
+#定义message为空，不然无法进入while循环；
+message = ""
+#如果不等于quit将一直执行；
+while message != 'quit':
+    message = input(prompt)
+    print(message)
+
+```
+
+以上代码如果输入quit，将会把quit再次输出才退出程序，增加if判断，以下为优化程序：
+
+```
+#7.2.2让用户选择退出优化
+
+#提示语
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program."
+
+#定义message为空，不然无法进入while循环；
+message = ""
+#如果不等于quit将一直执行；
+while message != 'quit':
+    message = input(prompt)
+    #增加if判断是否quit，如果是则输入信息；
+    if message != 'quit':
+        print(message)
+
+```
+
+
+
+###### 使用标志
+
+定义一个变量用于判断程序是否处于活动状态，这个变量被称为标志。while语句只需判断变量当前值是否True还是False。
+
+```
+#7.2.3使用标志
+
+#提示语
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program.\n"
+
+#定义个变量作为标志
+active = True
+
+#判断标志当前值是否True，如果是将执行循环；
+while active:
+    message = input(prompt)
+    
+    #使用if判断message是否quit，如果是将标志赋值为False;
+    if message == 'quit':
+        active = False
+    else:
+        print(message)
+```
+
+
+
+###### break退出循环
+
+要立即退出while循环，不再运行循环中余下的代码，也不管条件测试结果如何，可使用break语句。
+
+```
+#7.2.4使用break退出循环
+
+#提示语
+prompt = "\nPlease enter the name of a city you have visited:"
+prompt += "\nEnter 'quit' when you are finished.\n"
+
+
+
+#判断标志当前值是否True，如果是将执行循环；
+while True:
+    city = input(prompt)
+    
+    #使用if判断city是否quit，如果是则使用break语句直接退出循环；
+    if city == 'quit':
+        break
+    else:
+        print("I'd love to go to " + city.title() + "!")
+
+```
+
+###### continue
+
+要返回到循环开头，并根据条件测试结果决定是否继续执行循环，可使用continue，它不像break语句直接退出循环。
+
+```
+#7.2.5 在循环中使用continue
+
+current_number = 0
+
+#打印1-10里的奇数；
+while current_number < 10:
+    current_number += 1
+    
+    #使用求模运算，判断是否偶数，将返回循环，不再执行下面代码；
+    if current_number % 2 == 0 :
+        continue
+    
+    #如果是奇数将输出信息；
+    print(current_number)
+
+```
+
