@@ -2275,3 +2275,70 @@ while current_number < 10:
 
 ```
 
+
+
+###### 避免无限循环
+
+ctrl+C可以结束无限循环。
+
+确认程序至少有一个这样的地方能让循环条件为False或让break语句得以执行。
+
+###### 练习
+
+```
+#7-4比萨配料
+
+prompt = "请输入你的pizaa配料:\n"
+prompt += "Enter 'quit' when you are finished."
+
+pizza = ""
+while pizza != 'quit':
+    pizza = input(prompt)
+
+    if pizza != 'quit':
+        print("你的pizza已经添加配料: " + pizza + ".")
+
+
+#7-5电影票
+
+prompt = "请输入您的年龄查看电影票价格：\n"
+prompt += "\nEnter 'quit' when you go out."
+
+active = True
+while active:
+    age = input(prompt)
+    
+    if age != 'quit':
+        age = int(age)
+        if age < 3:
+            print("免费")
+        elif age <= 12:
+            print("10元.")
+        else:
+            print("15元.")
+    else:
+        active = False
+
+
+#7-6电影票,break结束
+prompt = "请输入您的年龄查看电影票价格：\n"
+prompt += "\nEnter 'quit' when you go out."
+
+age = ""
+while age != 'qiut':
+    age = input(prompt)
+    
+    if age != 'quit':
+        age = int(age)
+        if age < 3:
+            print("免费")
+        elif age <= 12:
+            print("10元.")
+        else:
+            print("15元.")
+        
+    else:
+        break
+
+```
+
