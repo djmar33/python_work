@@ -283,7 +283,9 @@ Python之禅 by Tim Peters
 7. 如何编写说明性注释，让代码更容易理解；
 8. 了解了让代码尽可能简单的概念；
 
-### 3.1列表
+
+
+### 3.列表
 
 列表由一系列按特定顺序排列的元素组成。可以创建包含字母、数字的列表。元素之间可以没有任何关系。
 
@@ -633,9 +635,9 @@ print("sort()反向：\n",english)
 5. 如何对列表临时排序？sorted()
 6. 如何确定列表长度？len()
 
-#### 4操作列表
+### 4.操作列表
 
-##### for语句
+#### for语句
 
 可以遍历列表的所有元素，对每个元素执行相同的操作。
 
@@ -662,7 +664,7 @@ print("Any of these animals would make a great pet!")
 
 ```
 
-##### range()函数
+#### range()函数
 
 range（）能够轻松地生成一系列的数字。
 
@@ -674,7 +676,7 @@ for value in range(1,5):
     print(value)
 ```
 
-###### 创建数字列表
+##### 创建数字列表
 
 使用list（）将range（）的结果直接转为列表。
 
@@ -684,7 +686,7 @@ number = list(range(1,5))
 print(number)
 ```
 
-###### 指定步长
+##### 指定步长
 
 range（2,11,2），range（）函数从2开始，然后不断增加2，直到达到或超过最终值11。后面数字2是递增数。
 
@@ -792,7 +794,7 @@ squares = [ value ** 3 for value in range(1,11)]
 print(squares)
 ```
 
-##### 切片
+#### 切片
 
 处理列表部分元素或所有元素，python称为切片。
 
@@ -814,7 +816,7 @@ print(players[2:])
 print(players[-3:])
 ```
 
-###### 遍历切片
+##### 遍历切片
 
 ```
 #4.4.2遍历切片
@@ -826,7 +828,7 @@ for player in players[0:4]:
 
 ```
 
-###### 复制列表
+##### 复制列表
 
 ```
 #4.4.3复制列表
@@ -886,15 +888,15 @@ for firend_pizza in firend_pizzas[:]:
 
 ```
 
-##### 元组
+#### 元组
 
 python将不能修改的值称为不可变的，而不不可变的列表称为元组。
 
-###### 定义元组
+##### 定义元组
 
 元组看起来犹如列表，但使用的是圆括号而不是方括号。定义元组后，可以使用索引来访问其元素，像访问列表一样。
 
-###### 遍历元组的所有值
+##### 遍历元组的所有值
 
 元组也可以像列表一样使用for循环遍历每个元素。
 
@@ -909,7 +911,7 @@ for food in foods:
 
 
 
-###### 修改元组元素的值
+##### 修改元组元素的值
 
 元组定以后就无法修改，除非重新赋值。
 
@@ -961,11 +963,11 @@ print(foods)
 6. 元组操作和使用；
 7. 代码格式指南；
 
-#### 5 if语句
+### 5 .if语句
 
 if语句让你能够检查程序当前状态，并据此采取相应措施。
 
-###### 简单示例
+#### 简单示例
 
 ```
 #5.1 if语句实例，判断列表中bmw如果是小写，就执行首字母大写输出；
@@ -1026,11 +1028,11 @@ mama = "废抽"
 print("废在妈妈名字里:\n",'废' not in mama)
 ```
 
-##### if-else语句
+#### if-else语句
 
 判断条件测试通过执行一个操作，若没有通过，将执行另外一个操作。
 
-###### 简单示例
+##### 简单示例
 
 ```
 #5.3.2 if-else语句
@@ -1043,11 +1045,11 @@ else:
 
 ```
 
-##### if-elif-else语句
+#### if-elif-else语句
 
 依次检查每个条件，否则将执行else操作。
 
-###### 简单示例
+##### 简单示例
 
 ```
 #5.3.3 if-elif-else语句
@@ -1062,9 +1064,9 @@ else:
 print("Your admission cost is $" + str(price) + "元.")
 ```
 
-##### 多个elif语句
+#### 多个elif语句
 
-###### 简单示例
+##### 简单示例
 
 ```
 #5.3.4 多个elif语句
@@ -1081,11 +1083,11 @@ else:
 print("Your admission cost is $" + str(price) + "元.")
 ```
 
-##### 省略else
+#### 省略else
 
 python并不要求if-elif语句里一定要包含else，有时候去掉else，判断语句将会更清晰。
 
-###### 简单示例
+##### 简单示例
 
 ```
 #5.3.5 省略else语句
@@ -1102,11 +1104,11 @@ elif age >= 64:
 print("Your admission cost is $" + str(price) + "元.")
 ```
 
-##### 测试多个条件
+#### 测试多个条件
 
 一般if-elif语句，都只能满足一个条件，然后执行对应的代码。但是如果需要判断每一个元素的时候，就需要使用多个if语句结构来判断。
 
-##### 练习
+#### 练习
 
 ```
 #练习
@@ -1317,11 +1319,11 @@ zhangwenya > haoge
 3. 使用for，加上if语句，对列表进行处理。
 4. if语句的写法建议。
 
-#### 6 字典
+### 6 .字典
 
 Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。
 
-##### 简单的字典
+#### 简单的字典
 
 ```
 #简单的字典
@@ -1333,7 +1335,7 @@ print(alien_0['options'])
 
 ```
 
-##### 使用字典
+#### 使用字典
 
 字典是一系列的键——值对。每个键都与一个值相关联。可将python任何对象用作字典的值。数字、字符串、列表乃至字典都可以。
 
@@ -1343,7 +1345,7 @@ print(alien_0['options'])
 
 字典不限键——值对数量。
 
-##### 访问字典的值
+#### 访问字典的值
 
 获取键对应的值，输入字典名字加方括号的键，将会返回对应的值。
 
@@ -1353,7 +1355,7 @@ alien_0 = {'color': 'green', 'options': 5}
 print(alien_0['color'])
 ```
 
-##### 添加键——值对
+#### 添加键——值对
 
 字典是一种动态结构，可随时添加键——值对。
 
@@ -1368,14 +1370,14 @@ alien_0['y_position'] = 25
 print(alien_0)
 ```
 
-##### 创建空字典
+#### 创建空字典
 
 ```
 #创建一个空字典
 alien_0 = {}
 ```
 
-##### 修改字典键的值
+#### 修改字典键的值
 
 ```
 #字典原本color键的值为green。
@@ -1408,7 +1410,7 @@ print("New x-position: " + str(alien_0['x_position']))
 
 ```
 
-##### 删除键--值对
+#### 删除键--值对
 
 ```
 #删除键--值对
@@ -1420,7 +1422,7 @@ del alien_0['color']
 print(alien_0)
 ```
 
-##### 字典书写建议
+#### 字典书写建议
 
 ```
 #favorite_languages，该小结告诉字典书写技巧；
@@ -1442,7 +1444,7 @@ print("Sarah's favorite language is " +
 
 ```
 
-##### 练习
+#### 练习
 
 ```
 #练习
@@ -1497,7 +1499,7 @@ print("if：\n" + vocabulary['if'])
 
 ```
 
-##### 遍历字典
+#### 遍历字典
 
 ```
 #6.3.1遍历所有键--值对
@@ -1709,13 +1711,13 @@ for friend in friends:
 
 ```
 
-##### 嵌套
+#### 嵌套
 
 有时需要将一系列字典存储在列表中，或将列表作为存储在字典中，这称为嵌套。
 
 可以在列表中去嵌套字典、在字典中嵌套列表甚至在字典中嵌套字典。
 
-###### 字典列表
+##### 字典列表
 
 如果管理成群结队的外星人呢？一种办法是创建一个外星人列表，其中每个外星人都是一个字典，包含有关的外星人的各种信息。
 
@@ -1865,7 +1867,7 @@ for name, languages in favorite_languages.items():
 
 
 
-###### 字典中存储字典
+##### 字典中存储字典
 
 字典中嵌套字典，代码可能会变复杂很多。但是遍历字典键时，将返回对应信息的字典。
 
@@ -2013,7 +2015,7 @@ for city, citie_info in cities.items():
 
 ```
 
-##### 小结
+#### 小结
 
 1. 如何定义字典；
 2. 如何存储信息在字典里；
@@ -2028,7 +2030,7 @@ for city, citie_info in cities.items():
 
 
 
-#### 7 input输入
+### 7 .input输入
 
 input()函数可以让用户输入需要的信息。
 
@@ -2042,7 +2044,7 @@ print(message)
 
 ```
 
-##### 编写清晰的程序
+#### 编写清晰的程序
 
 每当使用input（）时，都应制定清晰而易于明白的提示，准确的指出你希望用户提供什么信息。
 
@@ -2064,7 +2066,7 @@ print("您好," + name + "!")
 
 
 
-##### 使用int()来获取数值输入
+#### 使用int()来获取数值输入
 
 使用int()时，用户输入信息python将解读为字符串，如果用作输入将不会发生问题，但是如果进行数值判断，就会报错。就必须使用int()函数转换为数值。
 
@@ -2085,7 +2087,7 @@ else:
 
 ```
 
-##### 求模运算符（%）
+#### 求模运算符（%）
 
 两个数相处返回余数。可以使用求模运算符判断奇数还是偶数。
 
@@ -2104,13 +2106,13 @@ else:
 
 
 
-##### python2.7获取输入
+#### python2.7获取输入
 
 python2.7使用raw_input()函数，而不是使用input()。
 
 
 
-##### 练习
+#### 练习
 
 ```
 #7-1汽车租赁
@@ -2142,11 +2144,11 @@ else:
 
 
 
-##### while 循环
+#### while 循环
 
 for循环用于针对集合中的每个元素的一个代码块，而while循环不断的运行，直到指定条件不满足位置；
 
-###### 使用while循环
+##### 使用while循环
 
 ```
 #7.2.1使用while循环
@@ -2161,7 +2163,7 @@ while current_number <= 5:
 
 ```
 
-###### 判断退出
+##### 判断退出
 
 ```
 #7.2.2让用户选择退出
@@ -2201,7 +2203,7 @@ while message != 'quit':
 
 
 
-###### 使用标志
+##### 使用标志
 
 定义一个变量用于判断程序是否处于活动状态，这个变量被称为标志。while语句只需判断变量当前值是否True还是False。
 
@@ -2228,7 +2230,7 @@ while active:
 
 
 
-###### break退出循环
+##### break退出循环
 
 要立即退出while循环，不再运行循环中余下的代码，也不管条件测试结果如何，可使用break语句。
 
@@ -2253,7 +2255,7 @@ while True:
 
 ```
 
-###### continue
+##### continue
 
 要返回到循环开头，并根据条件测试结果决定是否继续执行循环，可使用continue，它不像break语句直接退出循环。
 
@@ -2277,13 +2279,13 @@ while current_number < 10:
 
 
 
-###### 避免无限循环
+##### 避免无限循环
 
 ctrl+C可以结束无限循环。
 
 确认程序至少有一个这样的地方能让循环条件为False或让break语句得以执行。
 
-###### 练习
+##### 练习
 
 ```
 #7-4比萨配料
@@ -2344,7 +2346,7 @@ while age != 'qiut':
 
 
 
-###### 处理列表和字典
+#### 处理列表和字典
 
 要记录大量的用户和信息，需要在while循环中使用列表和字典。
 
@@ -2352,7 +2354,7 @@ for可以遍历列表，但是for循环中不应该修改列表。修改列表�
 
 
 
-###### 在列表间移动元素
+##### 在列表间移动元素
 
 将一个列表的元素转移到另外一个列表。
 
@@ -2390,7 +2392,7 @@ for confirmed_user in confirmed_users:
 
 
 
-###### 删除包含特定值的所有元素表
+##### 删除包含特定值的所有元素表
 
 函数remove()可以删除列表中的特定值，如果需要删除列表中所有特定值，需要使用while循环。
 
@@ -2414,7 +2416,7 @@ print(pets)
 
 
 
-###### 使用用户输入来填充字典
+##### 使用用户输入来填充字典
 
 使用while循环，获取用户相关信息，来填充字典。
 
@@ -2450,7 +2452,7 @@ for name, response in responses.items():
 
 
 
-###### 练习
+##### 练习
 
 ```
 #7-8 熟食店
@@ -2519,7 +2521,7 @@ for name, resort in resorts.items():
 
 
 
-##### 小结
+#### 小结
 
 1. input（）获取用户信息；
 2. while（）循环；
@@ -2527,3 +2529,269 @@ for name, resort in resorts.items():
 4. while循环将列表元素移动到另外一个列表；
 5. while删除列表所有特定值；
 6. while（）循环字典；
+
+### 8 .函数
+
+函数是带名字的代码块，用于完成具体的工作。要执行函数定义的特定任务，可调用该函数。如果需要多次执行相同任务，只需执行该任务函数。
+
+#### 定义函数
+
+```
+#8.1定义函数
+
+#使用def关键字定义一个greet_user函数。括号里可以包含其他信息，这里将不需要；
+def greet_user():
+    #文档字符串注释，描述函数做什么的，help（）可以查看相关文档；
+    """显示简单的问候语"""
+    #函数体内代码；
+    print("hello!")
+#调用函数gret_user()；
+greet_user()
+
+```
+
+##### 向函数传递信息
+
+定义函数后，可以在函数括号里添加username，函数就可以接受你给username指定任何值。
+
+```
+#8.1.1向函数传递信息
+
+#使用def关键字定义一个greet_user函数。括号里可以包含其他信息，这里将不需要；
+#在括号添加username；
+def greet_user(username):
+    #文档字符串注释，描述函数做什么的，help（）可以查看相关文档；
+    """显示简单的问候语"""
+    #函数体内代码；
+    print("hello!" + username.title())
+#调用函z数gret_user()；
+#在括号将需要传递信息填入；
+greet_user('kirs')
+```
+
+
+
+##### 实参和形参
+
+实参是调用函数时调用给函数对应的形参。
+
+以下区分实参和实参关系：
+
+```
+#8.1.2实参和形参的区别
+
+#括号内usename即为形参；
+def greet_user(username):
+...
+#'kirs'即为实参；
+#实参是调用函数时调用给函数对应的形参，即为上面函数的username；
+#类似实参kirs赋值给形参username；
+greet_user('kirs')
+
+```
+
+##### 练习
+
+```
+#8-1消息
+
+def display_message():
+    print("本章学习了如何定义函数。")
+
+display_message()
+
+#8-2喜欢的图书
+
+def favorite_book(book):
+    print("my favorite book is " + book.title())
+
+favorite_book('python3')
+
+```
+
+
+
+#### 传递实参
+
+函数定义可能包含多个形参，因此函数调用中也可能包含多个实参。
+
+向函数传递实参方式很多：
+
+可使用**位置实参**：这要求实参的顺序与形参顺序相同；
+
+可使用**关键字实参**：其中每个实参都由变量名和值组成；
+
+#### 位置实参
+
+实参顺序一一对应形参的，这种被称为位置实参。
+
+位置实参顺序很重要，如果实参的顺序与形参顺序不一致，结果可能将会出乎意料。所以使用位置形参，必须确认实参与形参顺序一致。
+
+```
+#8.2.1位置实参
+
+#定义形参animal_type和pet_name；
+def describe_pet(animal_type, pet_name):
+    """显示宠物的信息"""
+    print("\nI have a " + animal_type + ".")
+    print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+#实参dog,feichou位置必须按形参顺序对应，否则实参与形参对应关系就有误；
+describe_pet('dog', 'feichou')
+```
+
+
+
+##### 调用多次函数
+
+如果需要调用函数任意次，再次调用函数即可，若需要对应形参，必须添加对应的实参即可。
+
+```
+describe_pet('dog', 'feichou')
+#第二次调用函数，与第一次调用函数一样，实参顺序对应形参；
+describe_pet('cat', 'xiaoliang')
+```
+
+调用函数多次是一种效率极高的工作方式，我们只需在函数中编写一次，然后将函数重复调用，即可重复运行函数里的代码。
+
+
+
+#### 关键字实参
+
+关键字实参是传递给函数的名称——值对。关键字实参无需考虑函数调用中的实参顺序，并且能清楚的指出函数调用中各个值的用途。
+
+```
+#8.2.2关键字实参
+
+#定义形参animal_type和pet_name；
+def describe_pet(animal_type, pet_name):
+    """显示宠物的信息"""
+    print("\nI have a " + animal_type + ".")
+    print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+#关键字实参明确地指出各个实参对应的形参；
+#使用关键字实参，务必准确地指定函数定义的形参名；
+describe_pet(animal_type='dog', pet_name='feichou')
+
+```
+
+
+
+#### 默认值
+
+编写函数时，可给每个形参指定默认值。在调用函数中给形参提供了实参时，python将使用指定实参的值，否则将会使用形参的默认值。
+
+```
+#8.2.3默认值
+
+#animal_type使用默认值dog；
+#函数调用时没有给animal_type实参，默认将会使用dog这个实参；
+def describe_pet(pet_name, animal_type='dog'):
+    """显示宠物的信息"""
+    print("\nI have a " + animal_type + ".")
+    print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+#只指定pet_name实参，animal_type将使用默认值；
+describe_pet(pet_name='feichou')
+
+```
+
+由于animal_type**指定了默认值**，无需通过实参来指定，因此函数调用中只包含一个实参；然而python依然将这个pet_name**实参视为位置实参**；所以需要将pet_name放在形参开头；如果不使用默认值，并且按关键字实参覆盖了默认值，将无需考虑位置实参问题；
+
+
+
+#### 等效的函数调用
+
+可混合使用位置实参、关键字实参和默认值，通常有多重等效的函数调用方式，以下各种实参传递方式，实现效果都一致。调用方式无关紧要，只要函数调用能生成预期结果就行。
+
+```
+#8.2.4等效的函数调用
+
+#animal_type使用默认形参，所以pet_name需要提供实参；
+def describe_pet(pet_name, animal_type='dog'):
+    """显示宠物的信息"""
+    print("\nI have a " + animal_type + ".")
+    print("My " + animal_type + "'s name is " + pet_name.title() + ".")
+
+#位置实参
+describe_pet('willie')
+
+#关键字实参
+describe_pet(pet_name='willie')
+
+#位置形参，并且将animal_type默认值覆盖；
+describe_pet('willie', 'hamster')
+
+
+#关键字实参，并且将animal_type默认值覆盖；
+describe_pet(pet_name='willie', animal_type='hamster')
+
+#关键字实参，不在乎形参位置顺序；
+describe_pet(animal_type='hamster', pet_name='willie')
+
+
+```
+
+
+
+#### 避免实参错误
+
+如果遇到实参不配错误，python将会用trceback指出错误出处。
+
+```
+Traceback (most recent call last):
+  File "D:/Github/python_work/ex/ex8/8.2.4.py", line 23, in <module>
+    describe_pet(animal_type='hamster')
+TypeError: describe_pet() missing 1 required positional argument: 'pet_name'
+
+```
+
+告诉你错误在23行，describe_pet函数里。缺少一个实参；
+
+
+
+##### 练习
+
+```
+#8-3 T_shirt
+
+def make_shirt(size, prompt):
+    print("即将制作一件大小为 " + size.upper() + ",标语为 " + prompt.title() + " 的T-shirt.")
+
+
+#位置实参
+make_shirt('xl', 'i love you')
+
+#关键字实参
+make_shirt(size='xl', prompt='i love you')
+
+
+#8-4 大号T_shirt
+
+def make_shirt(size, prompt='i love python'):
+    print("即将制作一件大小为 " + size.upper() + ",标语为 " + prompt.title() + " 的T-shirt.")
+
+
+#制作一件印有默认字样的大号T，位置实参；
+make_shirt('l')
+
+#制作一件印有默认字样的中号T，关键字实参；
+make_shirt(size='m')
+
+#制作一件印有其他字样的T,关键字形参，不考虑顺序；
+make_shirt(prompt='i love you', size='m')
+
+#8-5 城市
+
+def describe_city(city, state='china'):
+    print("城市： " + city.title() + " 属于这个国家： " + state.title())
+
+
+#位置实参；
+describe_city('shenzhen')
+
+#关键字实参；
+describe_city(city='guangzhou')
+
+#关键字形参，不考虑顺序；
+describe_city(state='japan', city='tokyo')
+
+```
+
