@@ -2795,3 +2795,247 @@ describe_city(state='japan', city='tokyo')
 
 ```
 
+
+
+#### 返回值
+
+函数并非总是直接显示输出，相反，它可以处理一些数据，并返回一个或一组值，返回的值被称为返回值。可以使用return语句将值方慧到调用函数的代码行。返回值能够让程序的大部分繁重工作转移到函数中去完成，从而简化程序。
+
+##### 返回简单值
+
+```
+#8.3.1返回简单值
+
+def get_formatted_name(first_name, last_name):
+    """返回整洁的姓名"""
+    full_name = first_name + ' ' + last_name
+    #将full_name的值返回
+    return full_name.title()
+
+#将函数返回值复赋值给musician变量；
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+
+```
+
+以上函数分别存储名和姓，每当需要显示姓名时可以调用此函数。
+
+
+
+##### 让实参变成可选
+
+有时候需要让实参变成可选的，可使用默认值来让实参变成可选。
+
+```
+#8.3.2让实参变成可选的
+
+def get_formatted_name(first_name, middle_name, last_name):
+    """返回整洁的姓名"""
+    full_name = first_name + ' ' + middle_name + ' ' + last_name
+    #将full_name的值返回
+    return full_name.title()
+
+#将函数返回值复赋值给musician变量；
+musician = get_formatted_name('jimi', 'lee', 'hendrix')
+print(musician)
+
+```
+
+以上代码增加了中间名，但是有时候不是所有人都会有中间名，所以需要让中间名该实参变成可选。
+
+```
+#8.3.2让实参变成可选的
+
+def get_formatted_name(first_name, middle_name, last_name):
+    """返回整洁的姓名"""
+    full_name = first_name + ' ' + middle_name + ' ' + last_name
+    #将full_name的值返回
+    return full_name.title()
+
+#将函数返回值复赋值给musician变量；
+musician = get_formatted_name('jimi', 'lee', 'hendrix')
+print(musician)
+
+```
+
+以上代码中，添加中间名选项，如果没有中间名的用户，会导致程序运行有问题。所以需要将中间名实参变为可选，需要更改一下代码：
+
+```
+#8.3.2-1让实参变成可选的
+
+#将middle_name中间名指定一个默认值，让中间名实参可选；
+def get_formatted_name(first_name, last_name, middle_name=''):
+    """返回整洁的姓名"""
+    #python中非空字符串解读为true,判断中间名是否为空，如果不是将把中间名字段加上；
+    if middle_name:
+    	full_name = first_name + ' ' + middle_name + ' ' + last_name
+    #如果中间名为空，全名将不会包含中间名；
+    else:
+    	full_name = first_name + ' ' + last_name
+    #将full_name的值返回
+    return full_name.title()
+
+#将函数返回值复赋值给musician变量；
+musician = get_formatted_name('jimi', 'hendrix',)
+print(musician)
+
+```
+
+
+
+#### 返回字典
+
+函数可返回任何类型的值，包括列表和字典等较复杂的数据结构。
+
+```
+#8.3.3返回字典
+
+def build_person(first_name, last_name):
+    """返回一个字典，其中包含有关一个人的信息"""
+    
+    #键为fist，而key为形参first_name；
+    person = {'fist': first_name, 'last': last_name}
+    return person
+#使用位置实参对应形参，把信息存储在字典里;
+musician = build_person('jimi', 'hendrix')
+print(musician)
+
+```
+
+字典也接受可选值：
+
+```
+#8.3.3-1字典实参变为可选
+
+#添加一个age形参，并且指定为默认值为空；
+#这样该形参如果没有传递实参，就直接使用默认值空字符；
+def build_person(first_name, last_name, age=''):
+    """返回一个字典，其中包含有关一个人的信息"""
+
+    person = {'fist': first_name, 'last':last_name}
+
+    #判断age字段是否为空，如果不是将值写入person字典对应的age key中；
+    if age:
+        person['age'] = age
+
+    #键为fist，而key为形参first_name；
+    return person
+#使用位置实参对应形参，把信息存储在字典里;
+#这里增加age的实参；
+musician = build_person('jimi', 'hendrix', age = 28)
+print(musician)
+
+```
+
+
+
+#### 函数和while循环
+
+```
+#8.3.4函数和while循环
+
+def get_formatted_name(first_name, last_name):
+    """返回整洁的姓名"""
+    full_name = first_name + ' ' + last_name
+    return full_name
+
+
+while True:
+   print("\n请告诉你的名字：")
+   f_name = input("姓：")
+   l_name = input("名:")
+
+   formatted_name = get_formatted_name(f_name, l_name)
+   print("\n您好！ " + formatted_name.title())
+
+```
+
+以上代码不没有涉及退出条件，导致无限循环，以下增加退出条件：
+
+```
+#8.3.4-1函数和while循环，增加break退出条件
+
+def get_formatted_name(first_name, last_name):
+    """返回整洁的姓名"""
+    full_name = first_name + ' ' + last_name
+    return full_name
+
+
+while True:
+   print("\n请告诉你的名字：")
+   print("随时输入'q'即将退出程序")
+   f_name = input("姓：")
+   #增加判断是否需要执行退出循环；
+   if f_name == 'q':
+       break
+   l_name = input("名:")
+   if l_name == 'q':
+       break
+
+   formatted_name = get_formatted_name(f_name, l_name)
+   print("\n您好！ " + formatted_name.title())
+
+```
+
+#### 练习
+
+```
+#8-6城市名
+
+def city_country(city, country):
+    citys = city + "," + country
+    return citys
+
+musician = city_country('shenzhen', 'china')
+print(musician)
+musician = city_country('guangzhou', 'china')
+print(musician)
+musician = city_country('phoenix', 'america')
+print(musician)
+
+#8-7专辑
+
+def make_album(star, song, number=''):
+    album = {star: song}
+    if number:
+        album['数量'] = number
+    
+    return album
+
+
+musician = make_album('周杰伦', '不想你哭')
+print(musician)
+
+musician = make_album('张国荣', '我')
+print(musician)
+
+musician = make_album('刘德华', '17岁', number = 20)
+print(musician)
+
+
+#8-8专辑,增加while循环，读取用户数据，并且提供退出循环条件；
+
+def make_album(star, song, number=''):
+    album = {star: song}
+    if number:
+        album[number] = number
+    
+    return album
+
+
+while True:
+    print("请输入您喜欢的专辑：\n")
+    print("随时可以输入'q'退出")
+
+    star_i = input("歌手：")
+    if star_i == 'q':
+        break
+    song_i = input("歌曲名：")
+    if song_i == 'q':
+        break
+
+    musician = make_album(star_i, song_i)
+    print(musician)
+
+```
+
