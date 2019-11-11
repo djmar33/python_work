@@ -3039,3 +3039,326 @@ while True:
 
 ```
 
+
+
+#### 传递列表
+
+向函数传递列表很有用，这种列表包含的可能是名字、数字或更复杂的对象（如字典）。
+
+```
+#8.4传递列表
+
+#定义一个函数greet_users；
+def greet_users(names):
+    """向列表中的每位用户都发出简单的问候"""
+    for name in names:
+        msg = "Hello, " + name.title() + "!"
+        print(msg)
+
+#定义一个名字列表；
+usernames = ['kirs', 'tom', 'jerry']
+#将列表作为实参，使用位置实参传递给形参；
+greet_users(usernames)
+```
+
+
+
+##### 函数中修改列表
+
+将列表传递给函数后，函数就可对其进行修改。在函数中对这个列表所做的任何修改都是永久性的，这能够高效的处理大量数据。
+
+```
+#8.4.1在函数中修改列表
+
+def print_models(unprinted_designs, completed_models):
+    """
+    模拟打印每个设计，直到没有未打印的设计为止
+    打印每个设计后，都将其已到列表completed_models中
+    """
+
+    while unprinted_designs:
+        current_design = unprinted_designs.pop()
+
+        #模拟根据设计制作3D打印模型的过程
+        print("Printing model: " + current_design)
+        completed_models.append(current_design)
+
+
+def show_completed_models(completed_models):
+    """显示打印好的所有模型"""
+    print("\nThe following models have been printed:")
+    for completed_model in completed_models:
+        print(completed_model)
+
+#创建一个未打印列表；
+unprinted_designs = ['iphone case', 'robo pendant', 'dodecachedron']
+#创建一个完成列表；
+completed_models = []
+
+#调用打印函数，使用位置实参传递给形参；
+print_models(unprinted_designs, completed_models)
+
+#调用显示完成函数；
+show_completed_models(completed_models)
+```
+
+以上函数优点：
+
+1. 程序更容易扩展和维护，不需要对源代码修改，只需要将打印内容修改一次再调用即可。
+2. 每个函数都负责一项具体工作，有助于复杂的任务划分成一系列步骤；
+
+
+
+##### 禁止函数修改列表
+
+向函数传递列表的副本，保留原有的列表。这样函数修改将只会影响副本，而丝毫不影响原件。
+
+将列表副本传递给函数，可以使用切片：
+
+`function_name(list_name[:])`
+
+`print_models(unprinted_designs[:], completed_models)`
+
+一般处理大型列表时，建议不使用副本。让函数使用现成的列表可避免花时间和内存创建副本，从而提升效率。
+
+
+
+#### 练习
+
+```
+#8-9魔术师
+
+def show_magicians(names):
+    """向列表中魔术师打招呼"""
+    print("以下魔术师有：\n")
+    for name in names:
+        print("欢迎魔术师 " + name.title() + "!")
+
+magicians = ['kirs', 'tom', 'jerry']
+show_magicians(magicians)
+    
+#8-10了不起的魔术师
+
+def make_great(ungreat, great):
+    """
+    模拟每个魔术师，直到没有魔术师为止
+    每个魔术师增加The Great，并已到列表great里；
+    """
+    while ungreat:
+        current_magicians = ungreat.pop()
+        completed_magicians = 'The Great' + current_magicians
+        great.append(completed_magicians)
+
+
+def show_magicians(names):
+    """向列表中魔术师打招呼"""
+    print("以下魔术师有：\n")
+    for name in names:
+        print("欢迎魔术师 " + name.title() + "!")
+
+#创建一个未增加The Great的魔术师列表;
+ungreat = ['kirs', 'tom', 'jerry']
+#创建一个空列表，将存储增加The Great魔术师的列表；
+great = []
+make_great(ungreat, great)
+show_magicians(great)
+
+
+#8-11了不起的魔术师
+
+#使用切片，传递ungreat副本给函数make_great；
+def make_great(ungreat, great):
+    """
+    模拟每个魔术师，直到没有魔术师为止
+    每个魔术师增加The Great，并已到列表great里；
+    """
+    while ungreat:
+        current_magicians = ungreat.pop()
+        completed_magicians = 'The Great' + current_magicians
+        great.append(completed_magicians)
+
+
+def show_magicians(names):
+    """向列表中魔术师打招呼"""
+    print("以下魔术师有：\n")
+    for name in names:
+        print("欢迎魔术师 " + name.title() + "!")
+
+#创建一个未增加The Great的魔术师列表;
+ungreat = ['kirs', 'tom', 'jerry']
+#创建一个空列表，将存储增加The Great魔术师的列表；
+great = []
+make_great(ungreat[:], great)
+
+#显示增加The Great 的魔术师
+show_magicians(great)
+
+#显示为增加The Great的列表，确保函数修改的不是原件；
+show_magicians(ungreat)
+
+```
+
+
+
+#### 传递任意数量的实参
+
+python允许函数从调用语句中收集任意数量的实参。
+
+```
+#8.5传递任意数量的实参
+
+#形参*toppings中的星号让python创建一个名为toppings的空元组
+#收到所有实参都封装到这个元组中；
+
+def make_pizza(*toppings):
+    """打印顾客点的所有配料"""
+    print(toppings)
+
+#一个实参调用函数；
+make_pizza('pepperoni')
+
+#三个实参条用函数；
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+```
+
+增加for循环，对配料做遍历：
+
+```
+#8.5-1增加for循环对配料做遍历
+
+#形参*toppings中的星号让python创建一个名为toppings的空元组
+#收到所有实参都封装到这个元组中；
+
+def make_pizza(*toppings):
+    """打印顾客点的所有配料"""
+    print("\nMaking a pizza with the following toppings:")
+    for topping in toppings:
+        print("-" + topping)
+
+#一个实参调用函数；
+make_pizza('pepperoni')
+
+#三个实参条用函数；
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+
+```
+
+
+
+##### 位置实参和任意数实参
+
+python先匹配位置实参和关键字实参，再将余下的实参都收集到最后一个形参。
+
+```
+#8.5.1 结合使用位置实参和任意数量实参
+
+
+def make_pizza(size, *toppings):
+    """概述要制作的比萨"""
+    print("\nMkaing a " + str(size) + "-inch pizza with the following toppings:")
+    
+    #遍历比萨材料；
+    for topping in toppings:
+        print("-" + topping)
+
+
+make_pizza(16, 'pepperoni')
+
+#增加size实参，后续无论多少个实参，都会存储在toppings形参里；
+make_pizza(20, 'mushrooms', 'green peppers', 'extra cheese')
+
+```
+
+
+
+##### 任意数量的关键字实参
+
+python也可以接受任意数量的键--值对。（字典）
+
+```
+#8.5.2 使用任意数量的关键字实参
+
+
+def build_profile(first, last, **user_info):
+    """创建一个字典，其中包含我们指导的有关用户的一切"""
+    profile = {}
+    profile['first_name'] = first
+    profile['last_name'] = last
+    
+    #将user_info键值对写入profile字典里；
+    for key, value in user_info.items():
+        profile[key] = value
+    
+    #返回字典值；
+    return profile
+#将传递姓，名，两个键值对location='princeton'和field='physics'
+user_profile = build_profile('albert', 'einstein', location='princeton', field='physics')
+
+print(user_profile)
+
+```
+
+
+
+#### 练习
+
+```
+#8-12三文治
+
+def sandwich(*toppings):
+    """概述制作三文治材料"""
+    print("\n以下是制作三文治的材料:")
+    for topping in toppings:
+        print("- " + topping)
+
+sandwich('火腿', '鸡蛋', '青菜')
+
+sandwich('西红柿')
+
+
+
+#8-13 用户简介
+
+def build_profile(first, last, **user_info):
+    """创建一个字典，其中包含我们指导的有关用户的一切"""
+    profile = {}
+    profile['first_name'] = first
+    profile['last_name'] = last
+    
+    #将user_info键值对写入profile字典里；
+    for key, value in user_info.items():
+        profile[key] = value
+    
+    #返回字典值；
+    return profile
+
+
+user_profile = build_profile('liang', 'weijie', location='shenzhen', love='jerry', wife='feichou')
+
+print(user_profile)
+
+
+
+#8-14 汽车
+
+def make_car(firm, type, **property):
+    """创建一个字典，其中包含我们指导的有关用户的一切"""
+    car = {}
+    car['firm_name'] = firm
+    car['type_name'] = type
+    
+    #将property键值对写入car字典里；
+    for key, value in property.items():
+        car[key] = value
+    
+    #返回字典值；
+    return car
+
+
+car = make_car('subaru', 'outback', color='blue', tow_package=True)
+
+print(car)
+
+
+```
+
