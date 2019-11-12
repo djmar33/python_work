@@ -3362,3 +3362,76 @@ print(car)
 
 ```
 
+
+
+#### 函数存储在模块中
+
+函数的优点之一是，使用它们可将代码与主程序分离。通过给函数指定描述性名称，可让程序容易理解得多。还可以将函数存储在被称为模块的独立文件夹中，再将模块导入到主程序中。import语句允许在当前运行的程序文件中使用模块的代码。
+
+模块的优点：
+
+1、将函数存储在模块中，可隐藏程序代码的细节，将重点放在程序的高层逻辑上。
+
+2、不同程序中重用函数。
+
+3、模块便于分享，并且可以共同编写函数库。
+
+
+
+##### 导入整个模块
+
+创建模块及导入方法：
+
+1、让函数导入，就需要先创建模块，模块是扩展名为.py的文件。
+
+```
+#8.6.1创建模块
+#创建一个名为pizza.py的模块，包含要导入的程序代码；
+
+def make_pizza(size, *toppings):
+    """概述要制作的比萨"""
+    print("\nMaking a " + str(size) +
+    "-inch pizza with the following toppings:")
+    for topping in toppings:
+        print("-" + topping)
+```
+
+2、导入模块。在pizza.py模块所在的目录中创建另一个名为making_pizzas.py文件，导入pizza模块。
+
+```
+#8.6.1导入pizza.py模块
+#导入刚创建的pizza模块
+import pizza
+
+pizza.make_pizza(16, 'pepperoni')
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+```
+
+
+
+import模块后，可以调用模块中所有函数。如果import moudule_name模块，以下为调用模块中函数的方法：
+
+`module_name.function_name()`
+
+
+
+##### 导入特定的函数
+
+导入模块中特定函数：
+
+`from moudule_name import function_name`
+
+导入模块中任意函数：
+
+`from moudule_name import function_0, function_1`
+
+示例：
+
+```
+#导入模块指定的模块
+from pizza import make_pizza
+#无需增加模块名.函数名调用，直接使用函数名称即可。
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+```
+
