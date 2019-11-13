@@ -3435,3 +3435,157 @@ make_pizza(16, 'pepperoni')
 make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
 ```
 
+
+
+##### 使用as给函数指定别名
+
+导入的函数名称可能与程序中现有名称冲突，或者函数名称过长，可指定简短的别名——使用as。
+
+```
+#8.6.3使用as给函数指定别名
+
+#模块导入make_pizza函数，并指定mp别名。
+from pizza import make_pizza as mp
+
+#使用别名mp就可以调用；
+mp(16, 'pepperoni')
+mp(12, 'mushrooms', 'green pepers', 'extra cheese')
+```
+
+
+
+给模块指定别名通用语法：
+
+`import module_name as mn`
+
+
+
+##### 导入模块中所有函数
+
+使用（*）号运算符可让python导入模块所有函数。
+
+建议：尽量不要使用。模块中有函数名称与项目名称重复，python遇到多个名称相同，只会覆盖，而不会分别导入所有函数。
+
+导入模块所有函数语法：
+
+`from module_name import *`
+
+
+
+#### 函数编写指南
+
+1、给函数指定描述性名称。小写字母或下划线；
+
+2、包含阐述函数功能的注释。采用文档字符串格式；
+
+3、给形参指定默认值，等号两边不要加空格；
+
+4、关键字形参指定值，等号两边不要加空格；
+
+5、PEP8建议代码长度不要超过79字符。
+
+6、程序或模块包含多个函数，可使用两个空行将相邻函数分开。方便查看前一个函数结尾，和函数开头地方。
+
+7、import语句放开头。
+
+
+
+#### 练习
+
+```
+#8-15打印模型
+#1、首先创建一个模块，另存为printing_functions.py
+
+def print_models(unprinted_designs, completed_models):
+    """
+    模拟打印每个设计，直到没有未打印的设计为止
+    打印每个设计后，都将其已到列表completed_models中
+    """
+
+    while unprinted_designs:
+        current_design = unprinted_designs.pop()
+
+        #模拟根据设计制作3D打印模型的过程
+        print("Printing model: " + current_design)
+        completed_models.append(current_design)
+
+
+def show_completed_models(completed_models):
+    """显示打印好的所有模型"""
+    print("\nThe following models have been printed:")
+    for completed_model in completed_models:
+        print(completed_model)
+
+#2、创建一个文件print_models.py，导入模块，并使用模块中的函数
+
+#导入刚创建的模块
+import printing_functions
+
+#创建一个未打印列表；
+unprinted_designs = ['iphone case', 'robo pendant', 'dodecachedron']
+#创建一个完成列表；
+completed_models = []
+
+#使用模块名.函数名调用；
+printing_functions.print_models(unprinted_designs, completed_models)
+
+printing_functions.show_completed_models(completed_models)
+
+
+
+#8-16创建一个模块，say_hello.py
+
+def hello(name, sex):
+    print(sex + ' ' + ' ' + name.title() + " Hello!")
+
+#创建hello_all.py，导入say_hello.py
+
+#8-16导入say_hello模块
+#方:1：import 模块，调用模块.函数名
+import say_hello
+
+say_hello.hello('feichou', girl)
+
+#8-16-1导入say_hello模块
+#方法2：导入指定的模块 
+#from module_name import function_name
+#调用直接函数，不需要加模块名。
+
+from say_hello import hello
+
+hello('feichou', 'Mis')
+
+
+#8-16-3导入say_hello模块
+#方法3：将模块指定别名
+#import module_name as fn
+
+import say_hello as hi
+
+hi.hello('feichou', 'Mis')
+
+
+#8-16-4导入say_hello模块
+#方法4：导入模块里所有的函数
+#from module_name import *
+
+from say_hello import *
+
+hello('feichou', 'Mis')
+
+
+```
+
+
+
+#### 小结
+
+1、编写函数。
+
+2、传递实参。位置实参/关键字实参。
+
+3、返回函数的值。
+
+4、函数、列表、字典、if和while结合使用。
+
+5、将函数存储在模块里，再从另外程序调用。
