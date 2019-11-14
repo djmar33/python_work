@@ -3589,3 +3589,200 @@ hello('feichou', 'Mis')
 4、函数、列表、字典、if和while结合使用。
 
 5、将函数存储在模块里，再从另外程序调用。
+
+
+
+### 9.类
+
+举个例子：你要充话费，就需要先下载支付宝，实名认证、绑定银行卡，再进行充值扣款这一系列操作。而对于你女朋友来说，她只需要想到对象，叫对象帮她充话费，她并不关心你是如何帮她充值的。
+
+面向对象编程(Object Oriented Programming，缩写OOP)，是一种程序设计思想，OOP把对象作为程序的基本单元，也就是说，在面向对象编程的世界里，万事万物皆对象。一种事物对应一个类，事物的属性定义为变量，事物的行为写成方法，把封装好的对象对外提供访问，提高了软件的重用性、灵活性和扩展性。
+
+
+| 事物                   | 类                   |
+| ---------------------- | -------------------- |
+| 属性：该事物的描述信息 | 成员变量：事物的属性 |
+| 行为：该事物能够做什么 | 成员方法：事物的行为 |
+
+
+
+#### 创建和使用类
+
+使用类可以模拟任何东西，类里可以包含信息（姓名、年龄）和行为（翻滚、蹲下）。
+
+
+
+##### 创建Dog类
+
+```
+#9.1.1创建Dog类，赋予每条狗sit()和roll_over()能力；
+
+class Dog():
+    """一次模拟小狗的简单尝试"""
+    def __init__(self, name, age):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗被命令蹲下"""
+        print(self.name.title() + " is now sitting."
+
+
+    def roll_over(self):
+        """模拟小狗被命令打滚"""
+        print(self.name.title() + " rolled over.")
+
+```
+
+步骤：
+
+1、class Dog()。定义一个Dog类，根据python，首字母大写的名称指的是类。括号为空说明要从空白创建这个类。
+
+2、定义类后，需要使用文档字符串来阐述该类的功能。"""
+
+3、类中的函数都称为方法。
+
+  `__init_（）`，开头末尾都有两个下划线，避免python默认方法与普通方法发生名称冲突。
+
+4、`__init__()`定义包含三个形参,self,name,age。
+
+​	self是必不可少，并且其他形参的最前面。python调用`__init__()`方法来创建Dog实例时，将自动传入实参self。每个与类相关联的方法调用都自动传递实参self，它是一个指向实例本身的引用，让实例能够访问类中的属性和方法。
+
+5、定义两个变量都有前缀self，self为前缀的变量都可供所有方法使用。
+
+​	self.name = name获取存储在形参name的值，并将其存储到变量name中，然后该变量被关联到当前创建的实例。通过实例访问的变量成为属性。
+
+
+
+##### 在python2.7创建类
+
+```
+#python2.7中创建类括号包括object
+class ClassName(object):
+    --snip--
+```
+
+
+
+##### 根据类创建实例
+
+可将类视为有关如何创建实例的说明，例如Dog（）类就是一系列说明。
+
+```
+#9.1.2根据类创建实例
+
+class Dog():
+    """一次模拟小狗的简单测试"""
+
+    def  __init__(self, name, age):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗被命令时蹲下"""
+        print(self.name.title() + "is now sitting.")\
+
+
+    def roll_over(self):
+        """模拟小狗被命令打滚"""
+        print(self.name.title() + " rolled over!")
+
+
+#1、创建实例，名为willie，年龄6岁的小狗。
+#2、实参调用Dog类中的方法__init__()。
+#3、方法__init__()创建一个表示特定的小狗实例，并将实参设置属性的值name和age。
+#4、方法__init__()并未显示return语句，但python自动返回这个小狗实例，并存储在my_dog变量
+#5、一般首字母大写为类，小写名称为实例。
+my_dog = Dog('willie', 6)
+
+#访问类中的属性。my_dog.name
+print("My dog's name is " + my_dog.name.title() + ".")
+print("My dog is " + str(my_dog.age) + " years old.")
+
+```
+
+##### 调用方法
+
+```
+#9.1.2根据类创建实例
+
+class Dog():
+    """一次模拟小狗的简单测试"""
+
+    def  __init__(self, name, age):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗被命令时蹲下"""
+        print(self.name.title() + " is now sitting.")\
+
+
+    def roll_over(self):
+        """模拟小狗被命令打滚"""
+        print(self.name.title() + " rolled over!")
+
+
+#1、创建实例，名为willie，年龄6岁的小狗。
+#2、实参调用Dog类中的方法__init__()。
+#3、方法__init__()创建一个表示特定的小狗实例，并将实参设置属性的值name和age。
+#4、方法__init__()并未显示return语句，但python自动返回这个小狗实例，并存储在my_dog变量
+#5、一般首字母大写为类，小写名称为实例。
+my_dog = Dog('willie', 6)
+
+#句点表示法调用Dog类定义的任何方法；
+my_dog.sit()
+my_dog.roll_over()
+
+```
+
+
+
+##### 创建多个实例
+
+```
+#9.1.2-2创建多个实例
+
+class Dog():
+    """一次模拟小狗的简单测试"""
+
+    def  __init__(self, name, age):
+        """初始化属性name和age"""
+        self.name = name
+        self.age = age
+
+    def sit(self):
+        """模拟小狗被命令时蹲下"""
+        print(self.name.title() + " is now sitting.")\
+
+
+    def roll_over(self):
+        """模拟小狗被命令打滚"""
+        print(self.name.title() + " rolled over!")
+
+
+#1、创建实例，名为willie，年龄6岁的小狗。
+#2、实参调用Dog类中的方法__init__()。
+#3、方法__init__()创建一个表示特定的小狗实例，并将实参设置属性的值name和age。
+#4、方法__init__()并未显示return语句，但python自动返回这个小狗实例，并存储在my_dog变量
+#5、一般首字母大写为类，小写名称为实例。
+my_dog = Dog('willie', 6)
+
+#访问类中的属性。my_dog.name
+print("My dog's name is " + my_dog.name.title() + ".")
+print("My dog is " + str(my_dog.age) + " years old.")
+
+my_dog.sit()
+
+
+#创建一个your_dog实例
+your_dog = Dog('feichou', 25)
+print("Your dog's name is " + your_dog.name.title() + ".")
+print("Your dog is " + str(your_dog.age) + " years old.")
+your_dog.roll_over()
+
+```
+
