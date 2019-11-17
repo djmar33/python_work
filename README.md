@@ -3786,3 +3786,515 @@ your_dog.roll_over()
 
 ```
 
+
+
+##### 练习
+
+```
+#9-1餐馆
+
+class Restaurant():
+    def __init__(self, restaurant, cuisine_type):
+        self.restaurant = restaurant
+        self.cuisine_type = cuisine_type
+
+
+    def describe_restaurant(self):
+        print(self.restaurant.title() + " restauran is so good!")
+
+
+    def open_restaurant(self):
+        print(self.restaurant.title() + " restaran delicious " +
+              self.cuisine_type.title() + ".")
+
+
+foods = Restaurant('kuaileyuan', 'chicken')
+foods.describe_restaurant()
+foods.open_restaurant()
+
+#9-2增加餐馆调用
+two_foods = Restaurant('zhengongfu', 'meat pie')
+two_foods.describe_restaurant()
+
+three_foods = Restaurant('miandingxiang', 'face')
+three_foods.describe_restaurant()
+
+
+
+
+
+#9-3用户
+
+class User():
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+
+    def describe_user(self):
+        full_name = self.first_name + " " + self.last_name
+        print("Hi, " + full_name)
+
+    def greet_user(self):
+        print("You're " + str(self.age) + " years old this year.")
+
+
+feichou = User('zhang', 'wenchou', 25)
+feichou.describe_user()
+feichou.greet_user()
+
+tom = User('liang', 'weijie', 27)
+tom.describe_user()
+tom.greet_user()
+```
+
+
+
+#### 使用类和实例
+
+可以使用类模拟现实世界许多情景。相同的类可以有不同的属性，可以修改实例的属性，也可以编写方法以特定的方式进行修改。
+
+```
+#9.2.1 Car类
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name
+
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+```
+
+
+
+##### 给属性指定默认值
+
+类总每个属性都必须有初始值，哪怕这个值是0或空字符串。
+
+在`__init__()`方法里指定属性的初始值也可以，类似形参默认值，指定后就无需提供实参，默认使用初始值。
+
+```
+#9.2.2 给属性指定默认值
+
+#增加odometer_reading属性
+#增加read_odometer()方法
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + self.model
+        return long_name
+
+    def read_odometer(self):
+        """打印一条指出汽车的里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+my_new_car.read_odometer()
+
+```
+
+
+
+##### 修改属性的值
+
+三种不同方式属性的值：
+
+1、直接修改
+
+2、通过方法进行修改
+
+3、通过方法进行递增
+
+
+
+直接修改：
+
+```
+#9.2.3 修改属性的值
+
+#1、直接修改属性的值
+#增加odometer_reading属性
+#增加read_odometer()方法
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + self.model
+        return long_name
+
+    def read_odometer(self):
+        """打印一条指出汽车的里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+#直接修改属性值
+my_new_car.odometer_reading = 23
+my_new_car.read_odometer()
+```
+
+
+
+通过方法修改属性值：
+
+```
+#9.2.3-1 修改属性的值
+
+#2、通过方法修改属性的值
+#增加odometer_reading属性
+#增加read_odometer()方法
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + self.model
+        return long_name
+
+    def read_odometer(self):
+        """打印一条指出汽车的里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """将里程表读书设置为指定的值"""
+        self.odometer_reading = mileage
+
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+#通过方法传递属性的值
+my_new_car.update_odometer(23)
+my_new_car.read_odometer()
+
+```
+
+增加判断语句
+
+```
+#9.2.3-3 修改属性的值,并且增加判断语句
+
+#2、通过方法修改属性的值，并且增加判断语句
+#增加odometer_reading属性
+#增加read_odometer()方法
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+        #设置初始值为23
+        self.odometer_reading = 23
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + self.model
+        return long_name
+
+    def read_odometer(self):
+        """打印一条指出汽车的里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+    
+    #增加判断语句，避免传递的数值小于原本的；
+    def update_odometer(self, mileage):
+        """
+        将里程表读书设置为指定的值
+        禁止将里程表读书往回调
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print("You can't roll back an odometer!")
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+#传递值小于默认值，将提示
+my_new_car.update_odometer(10)
+
+
+```
+
+
+
+##### 通过方法对属性的值进行递增
+
+```
+#9.2.3-3 修改属性的值,并且增加判断语句
+
+#2、通过方法修改属性的值，并且增加判断语句
+#增加odometer_reading属性
+#增加read_odometer()方法
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        """初始化描述汽车的属性"""
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """返回整洁的描述性信息"""
+        long_name = str(self.year) + ' ' + self.make + self.model
+        return long_name
+
+    def read_odometer(self):
+        """打印一条指出汽车的里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+    
+    #增加判断语句，避免传递的数值小于原本的；
+    def update_odometer(self, mileage):
+        """
+        将里程表读书设置为指定的值
+        禁止将里程表读书往回调
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print("You can't roll back an odometer!")
+
+
+    def increment_odometer(self, miles):
+        """将里程表读书增加指定的量"""
+        self.odometer_reading += miles
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+#通过方法传递属性的值
+my_new_car.update_odometer(23500)
+my_new_car.read_odometer()
+
+#在原有值上递增
+my_new_car.increment_odometer(100)
+my_new_car.read_odometer()
+
+```
+
+
+
+##### 练习
+
+```
+#9-4练习 餐馆
+
+class Restaurant():
+    def __init__(self, restaurant, cuisine_type):
+        self.restaurant = restaurant
+        self.cuisine_type = cuisine_type
+        self.number_served = 0
+
+
+    def describe_restaurant(self):
+        """告知餐厅很好吃"""
+        print(self.restaurant.title() + " restauran is so good!")
+
+
+    def open_restaurant(self):
+        """告知餐厅有什么吃的"""
+        print(self.restaurant.title() + " restaran delicious " +
+              self.cuisine_type.title() + ".")
+    
+
+    def set_number_served(self):
+        """计算今天有多少个人来餐厅"""
+        print("There today " + str(self.number_served) + " people in this restaurant.")
+    
+
+    def increment_number_served(self, sum):
+        """递增人数，并且算出目前总共多少人"""
+        self.number_served += sum
+        print("There sum " + str(self.number_served) + " pople in this restaurant.")
+
+foods = Restaurant('kuaileyuan', 'chicken')
+foods.describe_restaurant()
+foods.open_restaurant()
+foods.set_number_served()
+foods.increment_number_served(70)
+
+
+#9-5
+#用户
+
+class User():
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.login_attempts = 0
+
+
+    def describe_user(self):
+        """显示全名"""
+        full_name = self.first_name + " " + self.last_name
+        print("Hi, " + full_name)
+
+    def greet_user(self):
+        """显示年龄"""
+        print("You're " + str(self.age) + " years old this year.")
+
+
+    def increment_login_attempts(self):
+        """增加登陆次数"""
+        self.login_attempts += 1
+        print("Total " + str(self.login_attempts) + " of logins")
+
+
+    def reset_login_attempts(self):
+        """重置登陆次数"""
+        self.login_attempts = 0
+        print("Reset Login number.")
+
+
+feichou = User('zhang', 'wenchou', 25)
+feichou.describe_user()
+feichou.greet_user()
+feichou.increment_login_attempts()
+feichou.increment_login_attempts()
+feichou.increment_login_attempts()
+feichou.increment_login_attempts()
+feichou.reset_login_attempts()
+print("Current login times： " + str(feichou.login_attempts))
+
+```
+
+
+
+#### 继承
+
+编写类时，并非总是要从空白开始。如果要编写的类是另一个现成类的特殊版本，可使用继承。
+
+一个类继承另一个类时，它将自动获得另一个类的所有属性和方法；
+
+原有的类成为父类，而新类称为子类。子类继承了其父类的所有属性和方法，同时还可以定义自己的属性和方法。
+
+
+
+##### 子类的方法`__init__()`
+
+```
+#9.3.1创建子类
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+#创建子类，子类括号必须包含父类；
+class ElectricCar(Car):
+    """电动车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """初始化父类属性"""
+        #super()是一个特殊函数，帮助python将父类和子类关联起来；
+        #super()让python调用父类__init__()方法，让实例包含父类所有属性；
+        super().__init__(make, model, year)
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+print(my_tesla.get_descriptive_name())
+```
+
+
+
+##### python2.7中的继承
+
+```
+#9.3.2python2.7中的继承
+
+class Car(object):
+    --snip--
+
+#子类括号指定父类名称;
+class ElectricCar(Car):
+    def __init__(self, make, model, year):
+        #super()需要两个实参：子类名和对象self，帮助python将父类和子类关联起来。
+        super(ElectricCar, self).__init__(make, model, year)
+        --snip--
+
+```
+
+
+
+
+
+
+
