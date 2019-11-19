@@ -4294,7 +4294,323 @@ class ElectricCar(Car):
 
 
 
+##### 给子类定义属性和方法
+
+让一个类继承另一个类后，可添加区分子类和父类所需的新属性和方法。
+
+```
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+#创建子类，子类括号必须包含父类；
+class ElectricCar(Car):
+    """电动车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """初始化父类属性"""
+        #super()是一个特殊函数，帮助python将父类和子类关联起来；
+        #super()让python调用父类__init__()方法，让实例包含父类所有属性；
+        super().__init__(make, model, year)
+        #增加子类属性
+        self.battery_size = 70
+    
+    #增加电动车独有的电池信息
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + " =kWh battery.")
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+print(my_tesla.get_descriptive_name())
+my_tesla.describe_battery()
+
+```
 
 
 
+##### 重写父类方法
 
+```
+#9.3.4 重写父类的方法
+#Car类增加油箱容量方法fule_gas_tank，并且ElectricCar类也增加fule_gas_tank。
+#ElectricCar类与Car父类都存在fule_gas_tank，子类将不考虑父类的方法，而是用子类的方法。
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+#创建子类，子类括号必须包含父类；
+class ElectricCar(Car):
+    """电动车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """初始化父类属性"""
+        #super()是一个特殊函数，帮助python将父类和子类关联起来；
+        #super()让python调用父类__init__()方法，让实例包含父类所有属性；
+        super().__init__(make, model, year)
+        #增加子类属性
+        self.battery_size = 70
+    
+    #增加电动车独有的电池信息
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + " =kWh battery.")
+
+    def fill_gas_tank(self):
+        """将提示电动车没有油箱"""
+        print("This car doesn't need a gas tank!")
+
+#使用父类创建实例
+my_car = Car('toyota', 'levin', 2016)
+print(my_car.get_descriptive_name())
+my_car.fill_gas_tank(45)
+
+#使用子类创建实例
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+print(my_tesla.get_descriptive_name())
+my_tesla.describe_battery()
+my_tesla.fill_gas_tank()
+
+```
+
+使用继承，可以让子类保留父类继承而来的精华，也可以剔除不需要的方法。
+
+
+
+##### 将实例用作属性
+
+```
+#9.3.5将实例用作属性
+#创建Battery类，将电瓶的属性都归于此类，并用该类用作属性值；
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+#将Battery方法作为独立的类，这样便于添加更多关于电瓶的细节；
+
+class Battery():
+    """一次模拟电动汽车点评的简单尝试"""
+
+    def __init__(self, battery_size=70):
+        """初始化电瓶属性"""
+        self.battery_size = battery_size
+    
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + "-kWh battery.")
+
+
+class ElectricCar(Car):
+    """电动汽车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性，再初始化电动汽车特有的属性
+        """
+        super().__init__(make, model, year)
+         #将类作为属性值；
+        self.battery = Battery()
+
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+print(my_tesla.get_descriptive_name())
+#调用battery类中的describe_battery方法；
+my_tesla.battery.describe_battery()
+
+```
+
+
+
+在Battery方法里添加续航里程判断：
+
+```
+#9.3.5将实例用作属性
+#在Battery类中添加判断电瓶续航
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+#将Battery方法作为独立的类，这样便于添加更多关于电瓶的细节；
+
+class Battery():
+    """一次模拟电动汽车点评的简单尝试"""
+
+    def __init__(self, battery_size=70):
+        """初始化电瓶属性"""
+        self.battery_size = battery_size
+    
+    def get_range(self):
+        """打印一条信息，指出电瓶的续航里程"""
+        if self.battery_size == 70:
+            range = 240
+        elif self.battery_size == 85:
+            range = 270         
+        message = "This car can go approximately " + str(range)
+        message += " miles on a full charge."
+        print(message)
+    
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + "-kWh battery.")
+
+
+class ElectricCar(Car):
+    """电动汽车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性，再初始化电动汽车特有的属性
+        """
+        super().__init__(make, model, year)
+         #将类作为属性值；
+        self.battery = Battery()
+
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+print(my_tesla.get_descriptive_name())
+#调用battery类中的get_range方法；
+my_tesla.battery.battery_size = 85
+my_tesla.battery.get_range()
+
+```
+
+
+
+##### 
