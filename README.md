@@ -4706,5 +4706,366 @@ admin_user.show_privileges()
 
 
 
+#9-8权限
+#将实例用作属性
+
+class User():
+    """模拟用户登录次数"""
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.login_attempts = 0
+
+
+    def describe_user(self):
+        """显示全名"""
+        full_name = self.first_name + " " + self.last_name
+        print("Hi, " + full_name.title())
+
+    def greet_user(self):
+        """显示年龄"""
+        print("You're " + str(self.age) + " years old this year.")
+
+
+    def increment_login_attempts(self):
+        """增加登陆次数"""
+        self.login_attempts += 1
+        print("Total " + str(self.login_attempts) + " of logins")
+
+
+    def reset_login_attempts(self):
+        """重置登陆次数"""
+        self.login_attempts = 0
+        print("Reset Login number.")
+
+
+class Admin(User):
+    """模拟admin用户可以执行什么"""
+    def __init__(self, first_name, last_name, age):
+        """初始化父类属性"""
+        super().__init__(first_name, last_name, age)
+        #增加privileges属性，存储admin可执行任务的列表；
+        self.privileges = Privileges()
+
+class Privileges():
+    """模拟admin可执行列表"""
+    def __init__(self):
+        self.privileges = ['can add post', 'can delete post', 'can ban user']   
+
+    def show_privileges(self):
+        """显示admin管理权限"""
+        for i in self.privileges:
+            #暂时无法像9-7那样调用其他类方法及属性；
+            print("You " + i)
+
+
+admin_user = Admin('zhang', 'wenchou', 25)
+admin_user.privileges.show_privileges()
+
+
+
+#9-9电瓶升级
+#在Battery增加upgrade_battery()方法，判断电瓶容量;
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+#将Battery方法作为独立的类，这样便于添加更多关于电瓶的细节；
+
+class Battery():
+    """一次模拟电动汽车点评的简单尝试"""
+
+    def __init__(self, battery_size=70):
+        """初始化电瓶属性"""
+        self.battery_size = battery_size
+    
+    def get_range(self):
+        """打印一条信息，指出电瓶的续航里程"""
+        if self.battery_size == 70:
+            range = 240
+        elif self.battery_size == 85:
+            range = 270         
+        message = "This car can go approximately " + str(range)
+        message += " miles on a full charge."
+        print(message)
+    
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + "-kWh battery.")
+    
+    def upgrade_battery(self):
+        """检查电瓶容量及更新他的容量"""
+        if self.battery_size != 85:
+            self.battery_size = 85
+
+class ElectricCar(Car):
+    """电动汽车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性，再初始化电动汽车特有的属性
+        """
+        super().__init__(make, model, year)
+         #将类作为属性值；
+        self.battery = Battery()
+
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+print(my_tesla.get_descriptive_name())
+#调用battery类中的get_range方法；
+my_tesla.battery.get_range()
+
+#调用电瓶升级;
+my_tesla.battery.upgrade_battery()
+
+my_tesla.battery.get_range()
+
+
 ```
+
+
+
+#### 导入类
+
+python允许将类存储在模块里，然后在主程序中导入所需的模块。
+
+
+
+##### 导入单个类
+
+```
+#9.4.1导入单个类
+#1、将Car类存储为一个模块car.py然后进行导入；
+#2、from car import Car，导入Car类
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+```
+
+2、导入模块
+
+```
+#9.4.1导入模块car.py
+
+from car import Car
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.odometer_reading = 23
+my_new_car.read_odometer()
+
+```
+
+导入类是一种有效的编程方式，让主程序文件变得整洁而易于阅读，而专注主程序的高级逻辑。
+
+
+
+##### 一个模块存储多个类
+
+```
+#9.4.2在一个模块中存储多个类,car_2.py
+#在一个模块存储多个类后，然后指定单独的ElectricCar类
+
+
+"""一组用于表示燃油气和电动汽车的类"""
+
+class Car():
+    """一次模拟汽车的简单尝试"""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        self.fule_capactiy = 55
+
+    def get_descriptive_name(self):
+        """按年份、厂商、型号输出汽车信息"""
+        long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+        return long_name.title()
+
+
+    def read_odometer(self):
+        """显示里程信息"""
+        print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+    def update_odometer(self, mileage):
+        """
+        判断里程信息是否往回调整
+        """
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+
+        else:
+            print("You can't roll back an odometer!") 
+
+    def increment_odometer(self, miles):
+        """递增里程信息"""
+        self.odometer_reading += miles
+
+    def fill_gas_tank(self, fule):
+        """增加油箱显示"""
+        self.fule_capactiy = fule
+        print("Fule Capactiy is : " + str(self.fule_capactiy) + "L.")
+
+#将Battery方法作为独立的类，这样便于添加更多关于电瓶的细节；
+
+class Battery():
+    """一次模拟电动汽车点评的简单尝试"""
+
+    def __init__(self, battery_size=70):
+        """初始化电瓶属性"""
+        self.battery_size = battery_size
+    
+    def get_range(self):
+        """打印一条信息，指出电瓶的续航里程"""
+        if self.battery_size == 70:
+            range = 240
+        elif self.battery_size == 85:
+            range = 270         
+        message = "This car can go approximately " + str(range)
+        message += " miles on a full charge."
+        print(message)
+    
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + "-kWh battery.")
+
+
+class ElectricCar(Car):
+    """电动汽车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性，再初始化电动汽车特有的属性
+        """
+        super().__init__(make, model, year)
+         #将类作为属性值；
+        self.battery = Battery()
+
+```
+
+2、导入指定类
+
+```
+#9.4.2在一个模块中存储多个类
+#在一个模块存储多个类后，然后指定单独的ElectricCar类
+
+from car_2 import ElectricCar
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+my_tesla.battery.describe_battery()
+my_tesla.battery.get_range()
+
+```
+
+
+
+##### 一个模块导入多个类
+
+```
+#9.4.4导入整个模块
+
+#导入整个模块，使用句点表示法访问需要的类；
+import car_2
+
+my_beetle = car_2.Car('volkswagen', 'beetle', 2016)
+print(my_beetle.get_descriptive_name())
+
+my_tesla = car_2.ElectricCar('tesla', 'roadster', 2016)
+print(my_tesla.get_descriptive_name())
+
+```
+
+
+
+##### 导入模块中的所有类
+
+`from module_name import *`
+
+不推荐使用import *方法。
+1、没有明确指出使用模块中哪些类。
+2、担心与其他类重名，导致难以诊断错误。
+
+推荐使用import module_name导入整个模块
+1、使用module_name.class_name访问类。明确知道程序哪个位置使用模块。
+2、避免名字冲突。
+
+
 
