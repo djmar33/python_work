@@ -5039,6 +5039,12 @@ my_tesla.battery.get_range()
 
 ##### 一个模块导入多个类
 
+`from car import Car, ElectricCar`
+
+
+
+##### 导入整个模块
+
 ```
 #9.4.4导入整个模块
 
@@ -5069,3 +5075,378 @@ print(my_tesla.get_descriptive_name())
 
 
 
+##### 在一个模块中导入另一个模块
+
+为避免模块太大，有时候需要将类分散到多个模块中。
+
+```
+#9.4.6在一个模块中导入另一个模块
+#首先将两个类存储在一个模块里
+
+
+"""一组可用于表示电动汽车的类"""
+#导入Car类，因为ElectricCar需要访问其父类Car，不然将会导致错误；
+from car import Car
+class Battery():
+    """一次模拟电动汽车点评的简单尝试"""
+
+    def __init__(self, battery_size=70):
+        """初始化电瓶属性"""
+        self.battery_size = battery_size
+    
+    def get_range(self):
+        """打印一条信息，指出电瓶的续航里程"""
+        if self.battery_size == 70:
+            range = 240
+        elif self.battery_size == 85:
+            range = 270         
+        message = "This car can go approximately " + str(range)
+        message += " miles on a full charge."
+        print(message)
+    
+    def describe_battery(self):
+        """打印一条描述电瓶容量的消息"""
+        print("This car has a " + str(self.battery_size) + "-kWh battery.")
+
+
+class ElectricCar(Car):
+    """电动汽车的独特之处"""
+
+    def __init__(self, make, model, year):
+        """
+        初始化父类的属性，再初始化电动汽车特有的属性
+        """
+        super().__init__(make, model, year)
+         #将类作为属性值；
+        self.battery = Battery()
+
+
+```
+
+2、创建一个my_cars_2.py，导入模块需要的类
+
+```
+#9.4.6在一个模块中导入另一个模块
+#2、导入模块中相关类，并创建实例
+
+from car import Car
+from electric_car import ElectricCar
+
+my_beetle = Car('volkswagen', 'beetle', 2016)
+print(my_beetle.get_descriptive_name())
+
+my_tesla = ElectricCar('tesla', 'roadster', 2016)
+print(my_tesla.get_descriptive_name())
+
+```
+
+
+
+
+
+##### 自定义工作流程
+
+建议：
+
+1、先尽可能在一个文件完成所有工作，再将类转移到独立模块中。
+
+2、一开始就尝试类存储在模块中，让代码更为组织有序。
+
+
+
+#### 练习
+
+```
+#9-10将Restaurant存储在一个模块restaurant中；
+"""一组餐馆评价"""
+
+class Restaurant():
+    def __init__(self, restaurant, cuisine_type):
+        self.restaurant = restaurant
+        self.cuisine_type = cuisine_type
+        self.number_served = 0
+
+
+    def describe_restaurant(self):
+        """告知餐厅很好吃"""
+        print(self.restaurant.title() + " restauran is so good!")
+
+
+    def open_restaurant(self):
+        """告知餐厅有什么吃的"""
+        print(self.restaurant.title() + " restaran delicious " +
+              self.cuisine_type.title() + ".")
+    
+
+    def set_number_served(self):
+        """计算今天有多少个人来餐厅"""
+        print("There today " + str(self.number_served) + " people in this restaurant.")
+    
+
+    def increment_number_served(self, sum):
+        """递增人数，并且算出目前总共多少人"""
+        self.number_served += sum
+        print("There sum " + str(self.number_served) + " pople in this restaurant.")
+        
+ 2、创建my_restaurant,导入Restaurant，并创建实例
+ 
+ #9-10将Restaurant存储在一个模块中；
+#导入模块restaurant中的Restaurant类，并创建实例;
+
+from restaurant import Restaurant
+
+foods = Restaurant('kuaileyuan', 'chicken')
+foods.describe_restaurant()
+
+______
+
+#9-11一个模块包含多个类
+#将9-8所有类存储在一个模块里，user.py
+"""用户权限"""
+
+class User():
+    """模拟用户登录次数"""
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.login_attempts = 0
+
+
+    def describe_user(self):
+        """显示全名"""
+        full_name = self.first_name + " " + self.last_name
+        print("Hi, " + full_name.title())
+
+    def greet_user(self):
+        """显示年龄"""
+        print("You're " + str(self.age) + " years old this year.")
+
+
+    def increment_login_attempts(self):
+        """增加登陆次数"""
+        self.login_attempts += 1
+        print("Total " + str(self.login_attempts) + " of logins")
+
+
+    def reset_login_attempts(self):
+        """重置登陆次数"""
+        self.login_attempts = 0
+        print("Reset Login number.")
+
+
+class Admin(User):
+    """模拟admin用户可以执行什么"""
+    def __init__(self, first_name, last_name, age):
+        """初始化父类属性"""
+        super().__init__(first_name, last_name, age)
+        #增加privileges属性，存储admin可执行任务的列表；
+        self.privileges = Privileges()
+
+class Privileges():
+    """模拟admin可执行列表"""
+    def __init__(self):
+        self.privileges = ['can add post', 'can delete post', 'can ban user']   
+
+    def show_privileges(self):
+        """显示admin管理权限"""
+        for i in self.privileges:
+            
+            print("You " + i)
+
+2、导入模块及创建实例
+#9-11将9-8所有类存储在user.py模块里，然后导入并创建实例
+
+from user import Admin
+
+admin_user = Admin('zhang', 'wenchou', 25)
+admin_user.privileges.show_privileges()
+
+
+——————
+
+
+#9-12多个模块
+#User存储一个模块里,user_only.py
+#Privileges和Admin存储admin_user.py
+
+"""显示用户信息"""
+
+class User():
+    """模拟用户登录次数"""
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+        self.login_attempts = 0
+
+
+    def describe_user(self):
+        """显示全名"""
+        full_name = self.first_name + " " + self.last_name
+        print("Hi, " + full_name.title())
+
+    def greet_user(self):
+        """显示年龄"""
+        print("You're " + str(self.age) + " years old this year.")
+
+
+    def increment_login_attempts(self):
+        """增加登陆次数"""
+        self.login_attempts += 1
+        print("Total " + str(self.login_attempts) + " of logins")
+
+
+    def reset_login_attempts(self):
+        """重置登陆次数"""
+        self.login_attempts = 0
+        print("Reset Login number.")
+
+
+#9-12多个模块
+#User存储一个模块里,user_only.py
+#Privileges和Admin存储admin_user.py
+#因为Admin需要访问User父类，需要导入
+
+from user_only import User
+
+"""admin权限集"""
+
+class Admin(User):
+    """模拟admin用户可以执行什么"""
+    def __init__(self, first_name, last_name, age):
+        """初始化父类属性"""
+        super().__init__(first_name, last_name, age)
+        #增加privileges属性，存储admin可执行任务的列表；
+        self.privileges = Privileges()
+
+class Privileges():
+    """模拟admin可执行列表"""
+    def __init__(self):
+        self.privileges = ['can add post', 'can delete post', 'can ban user']   
+
+    def show_privileges(self):
+        """显示admin管理权限"""
+        for i in self.privileges:
+            
+            print("You " + i)
+
+
+#9-12多个模块
+#User存储一个模块里,user_only.py
+#Privileges和Admin存储admin_user.py
+#创建admin实例
+
+from admin_user import Admin
+
+admin_user = Admin('zhang', 'wenchou', 25)
+admin_user.privileges.show_privileges()
+
+
+```
+
+
+
+#### 标准库
+
+python标准库是一组模块，安装的python都包含它。
+
+collections类中的OrderedDict类：可以保持字典添加顺序。
+
+```
+#9.5标注库
+#collections类中的OrdereDict方法，可以保持字典添加顺序；
+
+#导入OrdereDict方法
+from collections import OrderedDict
+
+#OrdereDict创建一个空的有序字典，并存储在favorite_languages中；
+favorite_languages = OrderedDict()
+
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    }
+
+for name, language in favorite_languages.items():
+    print(name.title() + "'s favorite language is " +
+    language.title() + ".")
+
+```
+
+##### 练习
+
+```
+#9-14创建骰子
+#导入随机模块
+from random import randint
+
+"""一个骰子游戏"""
+
+class Die():
+    #初始化order次数，sides面数属性;
+    def __init__(self, order, sides=6):
+        self.order = order
+        self.sides = sides
+    
+    def roll_die(self):
+        """投掷次数及输出投掷数字"""
+        while self.order:
+            x = randint(1, self.sides)
+            print("roll number is " + str(x))
+            self.order -= 1
+
+#创建一个6面骰子，投掷10次
+play_roll = Die(10)
+play_roll.roll_die()
+print("-" * 10)
+
+#创建一个10面骰子，投掷10次
+play_roll = Die(10, 10)
+play_roll.roll_die()
+print("-" * 10)
+
+#创建一个20面骰子，投掷10次
+play_roll = Die(10, 20)
+play_roll.roll_die()
+print("-" * 10)
+
+```
+
+python module of the week:http://pymotw.com可以了解python标准库的资源网站。
+
+
+
+#### 类编码风格
+
+1、类命名应采用驼峰命名法。
+
+ - 即将类名中的每个单词首字母都大写，而不使用下划线。
+ - 实例名和模块名都采用小写格式，并在单词之间加上下划线。
+
+2、每个模块、类或方法后面都应紧跟一个文档字符串。
+ - 文档字符串简要地描述类的功能。
+
+3、可使用空行组织代码，带不能滥用。
+ - 类中科使用一个空行隔开。
+ - 模块中科使用两个空行隔开。
+
+ 4、导入标准库中模块和自定义模块顺序。
+ - 先导入标准库，再加一个空格，后续再导入自定义模块。
+
+
+
+#### 小结
+
+1、如何编写类。
+2、如何使用属性在类中存储信息。
+3、如何编写__init__()。
+4、如何创建实例。
+5、继承可简化工作。
+6、将类用作另一个类属性。
+7、如何修改实例属性，直接修改或通过方法修改。
+8、如何将类存储在模块里。
+9、使用标准库。
+10、编写类的语法。
