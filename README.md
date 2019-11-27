@@ -5442,7 +5442,7 @@ python module of the week:http://pymotw.com可以了解python标准库的资源�
 
 1、如何编写类。
 2、如何使用属性在类中存储信息。
-3、如何编写__init__()。
+3、如何编写`__init__()。`
 4、如何创建实例。
 5、继承可简化工作。
 6、将类用作另一个类属性。
@@ -5450,3 +5450,215 @@ python module of the week:http://pymotw.com可以了解python标准库的资源�
 8、如何将类存储在模块里。
 9、使用标准库。
 10、编写类的语法。
+
+
+
+### 文件和异常
+
+#### 文件中读取数据
+
+```
+#1、open函数打开pidigits.txt，存储在file_object中。
+#2、使用read函数，读取文件所有内容并赋值给contents；
+#3、输出内容；
+#4、with不需要访问文件后调用close（）关闭。
+with open('pi_digits.txt') as file_object:
+    contents = file_object.read()
+    #read()到达文件末尾会返回一个空字符串，所以需要删除；
+    print(contents.rstrip())
+
+```
+
+
+
+##### 文件路径
+
+open（）函数打开文件，是从当前运行文件的文件夹里寻找文件。
+
+相对路径：位置相对于当前运行的程序所在的目录中寻找文件。
+
+`with open('text_files/filename.txt') as file_object:`
+
+
+
+绝对路径：文件不在当前运行的程勋所在目录里，提供详细的文件路径。
+
+```
+file_path = '/home/text_file.txt'
+with open(file_path) as file_object:
+```
+
+
+
+在win系统里，文件路径是反斜杠（\），而不是斜杠（/）。由于win系统下路径为反斜杠，所以需要在开头加r。
+
+```
+file_path = r'C:\text_files\pi_digits.txt'
+with open(file_path) as file_object:
+```
+
+
+
+##### 逐行读取
+
+```
+#文件赋值给变量filename；
+filename = 'pi_digits.txt'
+
+#使用open打开文件，并且将内容对象存储到变量file_object中；
+with open(filename) as file_object:
+    #for循环导出每一行数字；
+    for line in file_object:
+        #每行末尾都有一个隐藏的换行符，由于print会产生一个换行符，所以总共两个；
+        #使用rstrip()删除空格；
+        print(line.rstrip())
+
+```
+
+
+
+##### 各行内容的列表
+
+```
+#10.1.4包含文件中各行的列表
+#文件赋值给变量filename；
+filename = 'pi_digits.txt'
+
+#使用open打开文件，并且将内容对象存储到变量file_object中；
+with open(filename) as file_object:
+    #readlines()从文件中读取每一行，并存储在一个列表中；
+    lines = file_object.readlines()
+    #for循环导出每一行数字；
+    for line in lines:
+        #每行末尾都有一个隐藏的换行符，由于print会产生一个换行符，所以总共两个；
+        #使用rstrip()删除空格；
+        print(line.rstrip())
+
+```
+
+
+
+##### 使用文件内容
+
+```
+#10.1.5使用文件内容
+#文件赋值给变量filename；
+filename = 'pi_digits.txt'
+
+#使用open打开文件，并且将内容对象存储到变量file_object中；
+with open(filename) as file_object:
+    #readlines()从文件中读取每一行，并存储在一个列表中；
+    lines = file_object.readlines()
+
+    pi_string = ''
+    #for循环导出每一行数字；
+    for line in lines:
+        #删除左右空格；
+        pi_string += line.strip()
+    
+    print(pi_string)
+    #计算pi_string长度,小数点算一位。
+    print(len(pi_string))
+    
+
+```
+
+如果读取是数字，需要该内容来使用，必须使用int（）转换或float（）转换。
+
+
+
+输出百万位圆周率长度
+
+```
+#10.1.6包含一百万位大型的文件
+#文件赋值给变量filename；
+filename = 'pi_million_digits.txt'
+
+#使用open打开文件，并且将内容对象存储到变量file_object中；
+with open(filename) as file_object:
+    #readlines()从文件中读取每一行，并存储在一个列表中；
+    lines = file_object.readlines()
+
+    pi_string = ''
+    #for循环导出每一行数字；
+    for line in lines:
+        pi_string += line.strip()
+    
+    #使用切片，输出前52位数；
+    print(pi_string[:52] + "...")
+    #计算pi_string长度
+    print(len(pi_string))
+
+```
+
+
+
+判断生日是否存在圆周率中
+
+```
+#10.1.7圆周率包含生日
+#文件赋值给变量filename；
+filename = 'pi_million_digits.txt'
+
+#使用open打开文件，并且将内容对象存储到变量file_object中；
+with open(filename) as file_object:
+    #readlines()从文件中读取每一行，并存储在一个列表中；
+    lines = file_object.readlines()
+
+    pi_string = ''
+    #for循环导出每一行数字；
+    for line in lines:
+        pi_string += line.strip()
+    
+    birthday = input("Enter your birthday, in the form mmddyy:")
+    if birthday in pi_string:
+        print("Your birthday apperars in the first million digits of pi!")
+    else:
+        print("Your birthday does not appear in the fist million digits of pi.")
+
+```
+
+##### 练习
+
+```
+#10-1
+
+filename = 'learning_python.txt'
+
+with open(filename) as file_object:
+    learns = file_object.read()
+    print(learns.rstrip())
+
+
+————————
+#10-1-1
+#遍历对象
+filename = 'learning_python.txt'
+
+with open(filename) as file_object:
+    for line in file_object:
+        new_line = line.rstrip()
+        print(new_line('Python', 'C'))
+
+————————
+#10-1-2
+#各行存储列表中
+filename = 'learning_python.txt'
+
+with open(filename) as file_object:
+    lines = file_object.readlines()
+    for line in lines:
+        print(line.rstrip())
+    print(lines)
+
+————————
+#10-2 replace()替换文字
+filename = 'learning_python.txt'
+
+with open(filename) as file_object:
+    for line in file_object:
+        new_line = line.rstrip()
+        print(new_line.replace('Python', 'C'))
+
+```
+
