@@ -5662,3 +5662,59 @@ with open(filename) as file_object:
 
 ```
 
+
+
+#### 写入文件
+
+```
+#10.2.1写入空文件
+
+#文件赋值给变量filename
+filename = 'programming.txt'
+
+#open()有读取模式r，写入模式w，附加模式a，读取和写入r+.默认为r。
+#如果文件不存在，open将自动创建。
+with open(filename, 'w') as file_object:
+    #使用wirte将字符串写入对象。
+    #使用模式w切记，如果问你件已存在，python将在返回文件对象前清空。
+    file_object.write("I love programming.")
+
+```
+
+
+
+##### 练习
+
+```
+#10-3访客
+
+filename = 'hello.txt'
+
+with open(filename, 'w') as file_object:
+    while True:
+        print("Enter 'q' to exit.")
+        name = input("请输入你的名字： ")
+        if name == 'q':
+            break
+        else:
+            file_object.write(name + "\n")
+            
+
+
+#10-4访客名单
+
+filename = 'hello.txt'
+
+with open(filename, 'w') as file_object:
+    while True:
+        print("Enter 'q' to exit.")
+        name = input("请输入你的名字： ")
+        if name == 'q':
+            break
+        else:
+            print("Welcome! " + name.title())
+            file_object.write(name + "\n")
+
+
+```
+
